@@ -1,22 +1,33 @@
 <template lang="html">
 
   <div id="map-overlay">
-    <div id='topic-container'>
-      <quiz-topic topic="Capitals Quiz"/>
-      <quiz-topic topic="Flags Quiz"/>
-      <quiz-topic topic="Currency Quiz"/>
+    <div id='topic-container' v-if="!selectedTopic">
+      <quiz-topic topic="Capitals Quiz" topic_keyword="capital"/>
+      <quiz-topic topic="Flags Quiz" topic_keyword="flag"/>
+      <quiz-topic topic="Currency Quiz" topic_keyword="currencies[0].name"/>
     </div>
   </div>
 
 </template>
 
 <script>
+import {eventBus} from '../main.js'
 import QuizTopic from './QuizTopic.vue'
 
 export default {
   name: 'map-overlay',
+  data() {
+    return {
+      'selectedTopic': null
+    }
+  },
   components: {
     'quiz-topic': QuizTopic
+  },
+  mounted(){
+    eventBus.$on('selected-topic', (topic) => {
+      this.selectedTopic = topic
+    })
   }
 
 }
