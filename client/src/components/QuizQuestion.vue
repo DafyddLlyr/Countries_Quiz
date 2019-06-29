@@ -22,7 +22,9 @@ export default {
       return this.selectedTopic.split(" ")[0].toLowerCase() + "Quiz"
     },
     apiTopicName(){
-      if (this.selectedTopic = "Capitals Quiz") { return "capital" }
+      if (this.selectedTopic === "Capitals Quiz") { return "capital" }
+      else if (this.selectedTopic === "Flags Quiz") { return "flag" }
+      else if (this.selectedTopic === "Currencies Quiz") { return "currencies[0].name" }
     }
   },
   mounted() {
