@@ -5,11 +5,13 @@
       <option value="" disabled>Please select user:</option>
       <option v-for="user in users" :value="user">{{user.name}}</option>
     </select>
+    <button v-on:click="handleSelectUser" type="button" name="button">Log On</button>
   </div>
 
 </template>
 
 <script>
+import {eventBus} from '../main.js'
 
 export default {
   name: 'landing-page',
@@ -28,8 +30,8 @@ export default {
       .then( res => res.json())
       .then( users => this.users = users)
     },
-    selectUser() {
-
+    handleSelectUser() {
+      eventBus.$emit('selected-user', this.user)
     }
   }
 
