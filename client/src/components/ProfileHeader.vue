@@ -17,6 +17,7 @@ export default {
 
 #profile-header {
   background: green;
+  grid-area: header;
 }
 
 </style>

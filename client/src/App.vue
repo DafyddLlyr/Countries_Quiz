@@ -2,7 +2,7 @@
   <div id="app">
     <landing-page v-if="!user"/>
 
-    <div id="profile-container">
+    <div id="profile-container" v-if="user">
       <profile-header/>
       <nav-bar :user='user'/>
     </div>
@@ -50,5 +50,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#profile-container {
+  display: grid;
+  grid-template-rows: 10vh;
+  grid-template-columns: 20vw auto;
+  grid-template-areas:
+    'header header'
+    'nav-bar main'
 }
 </style>
