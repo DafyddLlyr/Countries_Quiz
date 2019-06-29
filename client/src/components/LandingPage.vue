@@ -1,6 +1,11 @@
 <template lang="html">
 
-
+  <div id="landing-page">
+    <select  v-model="user"  class="" name="">
+      <option value="" disabled>Please select user:</option>
+      <option v-for="user in users" :value="user">{{user.name}}</option>
+    </select>
+  </div>
 
 </template>
 
@@ -10,8 +15,8 @@ export default {
   name: 'landing-page',
   data() {
     return {
-      user: null,
-      users: []
+      user: "",
+      users: null
     }
   },
   mounted() {
@@ -22,6 +27,9 @@ export default {
       fetch('http://localhost:3000/api/users/')
       .then( res => res.json())
       .then( users => this.users = users)
+    },
+    selectUser() {
+
     }
   }
 
