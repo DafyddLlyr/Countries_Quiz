@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+
+    <landing-page/>
 
   </div>
 </template>
 
 <script>
-
+import LandingPage from './components/LandingPage.vue'
 export default {
   name: 'app',
   components: {
-
+    'landing-page': LandingPage
   }
 }
 </script>
