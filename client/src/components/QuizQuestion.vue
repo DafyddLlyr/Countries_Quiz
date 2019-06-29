@@ -17,7 +17,7 @@ export default {
   data(){
     return {
       'countryData': [],
-      'answerCountry': null,
+      'answerCountry': {},
       'answerArray': []
     }
   },
