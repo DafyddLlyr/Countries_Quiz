@@ -5,7 +5,7 @@
     <div id="profile-container" v-if="user">
       <profile-header/>
       <nav-bar :user='user'/>
-      <map-overlay/>
+      <map-overlay :user='user'/>
     </div>
 
 

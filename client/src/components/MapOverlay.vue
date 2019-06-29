@@ -7,7 +7,7 @@
       <quiz-topic topic="Currency Quiz"/>
     </div>
     <div id='quiz-container' v-if="selectedTopic">
-      <quiz-question :selectedTopic="selectedTopic"/>
+      <quiz-question :selectedTopic="selectedTopic" :user='user'/>
     </div>
   </div>
 
@@ -20,6 +20,7 @@ import QuizQuestion from './QuizQuestion.vue'
 
 export default {
   name: 'map-overlay',
+  props: ['user'],
   data() {
     return {
       'selectedTopic': null
