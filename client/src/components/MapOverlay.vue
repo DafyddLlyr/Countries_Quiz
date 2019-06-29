@@ -6,6 +6,9 @@
       <quiz-topic topic="Flags Quiz" topic_keyword="flag"/>
       <quiz-topic topic="Currency Quiz" topic_keyword="currencies[0].name"/>
     </div>
+    <div id='quiz-container' v-if="selectedTopic">
+      <quiz-question/>
+    </div>
   </div>
 
 </template>
@@ -13,6 +16,7 @@
 <script>
 import {eventBus} from '../main.js'
 import QuizTopic from './QuizTopic.vue'
+import QuizQuestion from './QuizQuestion.vue'
 
 export default {
   name: 'map-overlay',
@@ -22,7 +26,8 @@ export default {
     }
   },
   components: {
-    'quiz-topic': QuizTopic
+    'quiz-topic': QuizTopic,
+    'quiz-question': QuizQuestion
   },
   mounted(){
     eventBus.$on('selected-topic', (topic) => {
@@ -47,6 +52,13 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#quiz-container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>
