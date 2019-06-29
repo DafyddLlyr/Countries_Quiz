@@ -5,6 +5,7 @@
     <div id="profile-container" v-if="user">
       <profile-header/>
       <nav-bar :user='user'/>
+      <map-overlay/>
     </div>
 
 
@@ -17,6 +18,7 @@ import {eventBus} from './main.js'
 import LandingPage from './components/LandingPage.vue'
 import ProfileHeader from './components/ProfileHeader.vue'
 import NavBar from './components/NavBar.vue'
+import MapOverlay from './components/MapOverlay.vue'
 
 export default {
   name: 'app',
@@ -28,7 +30,8 @@ export default {
   components: {
     'landing-page': LandingPage,
     'profile-header': ProfileHeader,
-    'nav-bar': NavBar
+    'nav-bar': NavBar,
+    'map-overlay': MapOverlay
   },
   mounted(){
     eventBus.$on('selected-user', (user) => {
@@ -59,6 +62,7 @@ export default {
   grid-template-columns: 20vw auto;
   grid-template-areas:
     'header header'
-    'nav-bar main'
+    'nav-bar map-overlay'
+
 }
 </style>
