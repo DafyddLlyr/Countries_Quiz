@@ -1,6 +1,7 @@
 <template lang="html">
 
   <div id="landing-page">
+    <h1>Welcome to the Countries Quiz!!!</h1>
     <select  v-model="user"  class="" name="">
       <option value="" disabled>Please select user:</option>
       <option v-for="user in users" :value="user">{{user.name}}</option>
@@ -44,4 +45,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#landing-page {
+  background-color: red;
+}
+
 </style>
