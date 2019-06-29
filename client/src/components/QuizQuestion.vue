@@ -1,14 +1,16 @@
 <template lang="html">
 
   <div id="quiz-question">
-    <p>TEST QUESTION</p>
+    <h2>{{selectedTopic}}</h2>
   </div>
 
 </template>
 
 <script>
+
 export default {
-  name: 'quiz-question'
+  name: 'quiz-question',
+  props: ['selectedTopic']
 }
 </script>
 
@@ -18,6 +20,7 @@ export default {
   width: 70vw;
   height: 60vh;
   background-color: purple;
+  color: white;
 }
 
 </style>

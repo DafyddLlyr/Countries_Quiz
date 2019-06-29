@@ -12,10 +12,10 @@ import {eventBus} from '../main.js'
 
 export default {
   name: 'quiz-topic',
-  props: ['topic', 'topic_keyword'],
+  props: ['topic'],
   methods: {
     handleTakeQuiz(){
-      eventBus.$emit('selected-topic', this.topic_keyword)
+      eventBus.$emit('selected-topic', this.topic)
     }
   }
 }

@@ -2,12 +2,12 @@
 
   <div id="map-overlay">
     <div id='topic-container' v-if="!selectedTopic">
-      <quiz-topic topic="Capitals Quiz" topic_keyword="capital"/>
-      <quiz-topic topic="Flags Quiz" topic_keyword="flag"/>
-      <quiz-topic topic="Currency Quiz" topic_keyword="currencies[0].name"/>
+      <quiz-topic topic="Capitals Quiz"/>
+      <quiz-topic topic="Flags Quiz"/>
+      <quiz-topic topic="Currency Quiz"/>
     </div>
     <div id='quiz-container' v-if="selectedTopic">
-      <quiz-question/>
+      <quiz-question :selectedTopic="selectedTopic"/>
     </div>
   </div>
 
