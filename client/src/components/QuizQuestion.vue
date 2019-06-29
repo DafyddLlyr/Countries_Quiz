@@ -42,20 +42,26 @@ export default {
     prepareQuiz(){
       // Pick random country for question
       let randomCountry = this.countryData[Math.floor(Math.random() * this.countryData.length)]
-      console.log(this.countryData);
-      console.log(randomCountry);
+
       // Check user hasn't answered question
       if(this.user[this.dbTopicName]["passed"].includes(randomCountry.name)){
-        console.log("passed question");
         this.prepareQuiz()
       } else {
-        console.log("not passed question");
         this.answerCountry = randomCountry
       }
+
       // Put correct answer into array
       this.answerArray.push(this.answerCountry[this.apiTopicName])
+
       // Put 3 incorrect answers into array
+      const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
+
+      for(let i=0; i < 3; i++) {
+        this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
+      }
+
       // Shuffle array of answers
+
 
     }
   }
