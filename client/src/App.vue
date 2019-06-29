@@ -34,6 +34,7 @@ export default {
     eventBus.$on('selected-user', (user) => {
       this.user = user
     })
+    eventBus.$on('log-out', () => this.user = null)
   }
 }
 </script>
