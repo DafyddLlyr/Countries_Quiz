@@ -1,13 +1,22 @@
 <template lang="html">
 
   <div id="map-overlay">
-    <p>TEST</p>
+    <quiz-topic topic="Capitals Quiz"/>
+    <quiz-topic topic="Flags Quiz"/>
+    <quiz-topic topic="Currency Quiz"/>
   </div>
 
 </template>
 
 <script>
+import QuizTopic from './QuizTopic.vue'
+
 export default {
+  name: 'map-overlay',
+  components: {
+    'quiz-topic': QuizTopic
+  }
+
 }
 </script>
 
