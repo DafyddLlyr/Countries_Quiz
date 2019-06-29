@@ -2,6 +2,10 @@
 
   <div id="quiz-question">
     <h2>{{selectedTopic}}</h2>
+    <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
+    <div id="answer-boxes" v-for="answer in answerArray">
+      <p v-on:click="handleSelectAnswer(answer)">{{answer}}</p>
+    </div>
   </div>
 
 </template>
@@ -61,6 +65,19 @@ export default {
       }
 
       // Shuffle array of answers
+      this.answerArray.sort(function() {return 0.5 - Math.random()});
+
+    },
+    handleSelectAnswer(answer){
+      const result = (answer === this.answerCountry.apiTopicName)
+
+      // If correct save result for user in passed
+
+      // Handle previously failed question
+
+      // If incorreect save result in failed
+
+      // Move onto next question
 
 
     }
