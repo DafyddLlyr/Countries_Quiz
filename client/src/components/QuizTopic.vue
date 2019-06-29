@@ -15,4 +15,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#quiz-topic {
+  width: 30vw;
+  height: 20vh;
+  background-color: pink;
+  margin: 5vw;
+}
+
 </style>

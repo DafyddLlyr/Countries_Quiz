@@ -1,9 +1,11 @@
 <template lang="html">
 
   <div id="map-overlay">
-    <quiz-topic topic="Capitals Quiz"/>
-    <quiz-topic topic="Flags Quiz"/>
-    <quiz-topic topic="Currency Quiz"/>
+    <div id='topic-container'>
+      <quiz-topic topic="Capitals Quiz"/>
+      <quiz-topic topic="Flags Quiz"/>
+      <quiz-topic topic="Currency Quiz"/>
+    </div>
   </div>
 
 </template>
@@ -25,6 +27,12 @@ export default {
 #map-overlay {
   background: lightgrey;
   grid-area: map-overlay;
+}
+
+#topic-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 </style>
