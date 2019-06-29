@@ -28,6 +28,9 @@ export default {
     eventBus.$on('selected-topic', (topic) => {
       this.selectedTopic = topic
     })
+    eventBus.$on('show-topics', () => {
+      this.selectedTopic = null
+    })
   }
 
 }

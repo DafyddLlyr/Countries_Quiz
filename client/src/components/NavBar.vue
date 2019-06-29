@@ -1,6 +1,8 @@
 <template lang="html">
   <div id="nav-bar">
     <h3>Hello, {{user.name}}!</h3>
+    <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
+    <br>
     <button v-on:click="handleLogOut" type="button" name="button">Log out</button>
   </div>
 
@@ -15,6 +17,9 @@ export default {
   methods: {
     handleLogOut(){
       eventBus.$emit('log-out')
+    },
+    handleShowTopics(){
+      eventBus.$emit('show-topics')
     }
   }
 }
