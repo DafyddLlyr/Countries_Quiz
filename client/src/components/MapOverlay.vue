@@ -43,7 +43,7 @@ export default {
      'answerCountry': null,
      'questionCounter': 0,
      'quizCompleted': false,
-     'quizChoice': null
+     'quizChoice': false
    }
  },
  components: {
@@ -118,12 +118,11 @@ export default {
 }
 
 #select-quiz {
-  /* position: absolute;
   background: none;
   top: 10vw;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; */
+  justify-content: center;
 }
 
 #topic-container {
