@@ -3,20 +3,25 @@
   <div id="quiz-topic">
     <h2>{{topic}}</h2>
     <button v-on:click="handleTakeQuiz" type="button" name="button">Take Quiz!</button>
+    <progress-bar :topic="topic" :user="user"/>
   </div>
 
 </template>
 
 <script>
 import {eventBus} from '../main.js'
+import ProgressBar from './ProgressBar.vue'
 
 export default {
   name: 'quiz-topic',
-  props: ['topic'],
+  props: ['topic', 'user'],
   methods: {
     handleTakeQuiz(){
       eventBus.$emit('selected-topic', this.topic)
     }
+  },
+  components: {
+    'progress-bar': ProgressBar
   }
 }
 </script>

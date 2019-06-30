@@ -7,10 +7,10 @@
    </div>
 
    <div id='topic-container' v-if='!selectedTopic'>
-     <quiz-topic topic='Capitals Quiz'/>
-     <quiz-topic topic='Flags Quiz'/>
-     <quiz-topic topic='Currency Quiz'/>
-     <quiz-topic topic='Continents Quiz'/>
+     <quiz-topic topic='Capitals Quiz' :user="user"/>
+     <quiz-topic topic='Flags Quiz' :user="user" />
+     <quiz-topic topic='Currency Quiz' :user="user" />
+     <quiz-topic topic='Continents Quiz' :user="user" />
    </div>
    <div id='quiz-container' v-if='selectedTopic'>
      <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user'/>
@@ -48,7 +48,7 @@ export default {
    'quiz-complete': QuizComplete
  },
  mounted(){
-   this.initialize()
+   this.initializeGlobe()
    eventBus.$on('selected-topic', (topic) => {
      this.selectedTopic = topic
    })
@@ -78,7 +78,7 @@ export default {
    })
  },
  methods: {
-   initialize: function() {
+   initializeGlobe: function() {
      let options = { zoom: 2.2, position: [47.19537,8.524404] };
      let earth = new WE.map('earth_div', options);
      WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
@@ -97,7 +97,7 @@ export default {
    }
  }
 }
-// </script>
+</script>
 
 <style lang='css' scoped>
 
@@ -120,7 +120,6 @@ export default {
 #quiz-container {
  position: absolute;
  background-color: rgba(0, 0, 0, 0.0);
- top: 10vw;
  width: 80vw;
  height: 90vh;
  display: flex;
@@ -135,7 +134,6 @@ export default {
  right: 0;
  bottom: 0;
  left: 20vw;
- /* background-color: #000;  */
  position: absolute !important;
 }
 

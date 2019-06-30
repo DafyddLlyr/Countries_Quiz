@@ -22,15 +22,10 @@ export default {
     },
     handleNextQuestion() {
       if (this.questionCounter === 4) {
-        eventBus.$emit('quiz-ended') //Fix me!
+        eventBus.$emit('quiz-ended')
       } else {
         eventBus.$emit('increment-counter')
       }
-      // Increment counter
-      // Check counter
-      // Turn off QuizAnswer
-      // Turn on QuizQuestion
-
     }
   }
 }
