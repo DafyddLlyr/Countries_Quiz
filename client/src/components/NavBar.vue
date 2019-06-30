@@ -4,7 +4,8 @@
     <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
     <br>
     <label for="country">Pick a country to explore:</label>
-    <select id="country-picked" v-model="countryChoice" name="country" @change="handleCountryChoice">
+    <select v-model="countryChoice" name="country" @change="handleCountryChoice">
+      <option value="" disabled>Please select a country:</option>
       <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
     </select>
     <br>
