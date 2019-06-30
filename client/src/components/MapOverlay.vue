@@ -7,7 +7,7 @@
    <div id='topic-container' v-if='!selectedTopic'>
      <quiz-topic topic='Capitals Quiz' :user="user"/>
      <quiz-topic topic='Flags Quiz' :user="user" />
-     <quiz-topic topic='Currency Quiz' :user="user" />
+     <quiz-topic topic='Currencies Quiz' :user="user" />
      <quiz-topic topic='Continents Quiz' :user="user" />
    </div>
 
@@ -16,7 +16,7 @@
      <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
      <quiz-complete v-if='quizCompleted' />
    </div>
-   
+
  </div>
 
 </template>

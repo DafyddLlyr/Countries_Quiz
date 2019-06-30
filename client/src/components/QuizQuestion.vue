@@ -5,14 +5,21 @@
     <h2>{{selectedTopic}}</h2>
     <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
     <div id="answer-boxes" >
+
       <div class="answer-container" v-for="answer in answerArray"
       v-if="apiTopicName === 'flag'">
-      <img :src="answer" alt="flag" class="flag-display" v-on:click="handleSelectAnswer(answer)">
+        <img :src="answer" alt="flag" class="flag-display" v-on:click="handleSelectAnswer(answer)" />
+      </div>
+
+      <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName === 'currencies'"
+      v-on:click="handleSelectAnswer(answer)">
+      {{answer[0].name}} </p>
+
+      <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag' && apiTopicName !== 'currencies'"
+      v-on:click="handleSelectAnswer(answer)">
+      {{answer}} </p>
+
     </div>
-    <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
-    v-on:click="handleSelectAnswer(answer)">
-    {{answer}} </p>
-  </div>
 </div>
 
 </template>
@@ -43,7 +50,7 @@ export default {
       if (this.selectedTopic === "Capitals Quiz") { return "capital" }
       else if (this.selectedTopic === "Flags Quiz") { return "flag" }
       else if (this.selectedTopic === "Continents Quiz") { return "region" }
-      else if (this.selectedTopic === "Currencies Quiz") { return "currencies[0].name" }
+      else if (this.selectedTopic === "Currencies Quiz") { return "currencies" }
     }
   },
   mounted() {
