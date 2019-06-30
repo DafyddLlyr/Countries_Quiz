@@ -4,15 +4,26 @@ db.dropDatabase();
 
 db.users.insertMany ([
   {
-    name: "Sarab"
-
+    name: "Sarab",
+    capitalsQuiz: {passed: [], failed: []},
+    flagsQuiz: {passed: [], failed: []},
+    currenciesQuiz: {passed: [], failed: []},
+    continentsQuiz: {passed: [], failed: []}
   },
 
   {
-    name: "Laura"
+    name: "Laura",
+    capitalsQuiz: {passed: [], failed: []},
+    flagsQuiz: {passed: [], failed: []},
+    currenciesQuiz: {passed: [], failed: []},
+    continentsQuiz: {passed: [], failed: []}
   },
 
   {
-    name: "Dafydd"
+    name: "Dafydd",
+    capitalsQuiz: {passed: [], failed: []},
+    flagsQuiz: {passed: [], failed: []},
+    currenciesQuiz: {passed: [], failed: []},
+    continentsQuiz: {passed: [], failed: []}
   }
 ])
