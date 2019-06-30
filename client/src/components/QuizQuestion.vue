@@ -60,6 +60,7 @@ export default {
       // Filter out answered questions
       let availableCountries = this.countryData
       .filter(country => !this.user[this.dbTopicName].includes(country.name))
+      .filter(country => country[this.apiTopicName] !== "")
 
       // Pick random country for question
       this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
