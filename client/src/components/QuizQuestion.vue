@@ -58,24 +58,27 @@ export default {
       .then( () => this.prepareQuiz() )
     },
     prepareQuiz(){
-      // Pick random country for question
-      let randomCountry = this.countryData[Math.floor(Math.random() * this.countryData.length)]
+      // Filter out answered questions
+      let availableCountries = this.countryData
+      .filter(country => !this.user[this.dbTopicName].includes(country.name))
 
-      // Check user hasn't answered question
-      if(this.user[this.dbTopicName].includes(randomCountry.name)){
-        this.prepareQuiz()
-      } else {
-        this.answerCountry = randomCountry
-      }
+      // Pick random country for question
+      this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
 
       // Put correct answer into array
       this.answerArray.push(this.answerCountry[this.apiTopicName])
 
-      // Put 3 incorrect answers into array
-      const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
+      // Ensure correct answer can only be in array once
+      let remainingCountries = this.countryData.filter(country => country[this.apiTopicName] !== this.answerCountry[this.apiTopicName])
 
+      // Put 3 incorrect answers into array
       for(let i=0; i < 3; i++) {
-        this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
+        let randomCountry = remainingCountries[Math.floor(Math.random() * remainingCountries.length)]
+
+        this.answerArray.push(randomCountry[this.apiTopicName])
+
+        // Ensure no duplicates in answer array
+        remainingCountries = remainingCountries.filter(country => country[this.apiTopicName] !== randomCountry[this.apiTopicName])
       }
 
       // Shuffle array of answers
