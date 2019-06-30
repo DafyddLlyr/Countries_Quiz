@@ -76,8 +76,10 @@ export default {
 
     },
     handleSelectAnswer(answer){
-      const result = (answer === this.answerCountry.apiTopicName)
-
+      const result = (answer === this.answerCountry[this.apiTopicName])
+        // console.log(result);
+        // console.log(answer);
+        // console.log(this.answerCountry[this.apiTopicName]);
       // If correct save result for user in passed
 
       // Handle previously failed question
