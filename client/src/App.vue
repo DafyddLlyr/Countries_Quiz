@@ -1,27 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
- <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-   <title>client</title>
- </head>
- <body>
-   <noscript>
-     <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-   </noscript>
-   <div id="app"></div>
-   <!-- built files will be auto injected -->
- </body>
-</html>
-That's actually index! ^^^^^
-App -
 <template>
- <div id="app">
-   <landing-page v-if="!user"/>
+ <div id='app'>
 
-   <div id="profile-container" v-if="user">
+   <landing-page v-if='!user'/>
+
+   <div id='profile-container' v-if='user'>
      <profile-header/>
      <nav-bar :user='user'/>
      <map-overlay :user='user'/>
@@ -32,12 +14,12 @@ App -
 </template>
 
 <script>
-  import {eventBus} from './main.js'
+import {eventBus} from './main.js'
 
-  import LandingPage from './components/LandingPage.vue'
-  import ProfileHeader from './components/ProfileHeader.vue'
-  import NavBar from './components/NavBar.vue'
-  import MapOverlay from './components/MapOverlay.vue'
+import LandingPage from './components/LandingPage.vue'
+import ProfileHeader from './components/ProfileHeader.vue'
+import NavBar from './components/NavBar.vue'
+import MapOverlay from './components/MapOverlay.vue'
 
 export default {
  name: 'app',
@@ -83,5 +65,5 @@ export default {
    'header header'
    'nav-bar map-overlay'
 
-  }
+}
 </style>
