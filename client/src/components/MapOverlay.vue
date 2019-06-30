@@ -8,7 +8,8 @@
       <quiz-topic topic="Continents Quiz"/>
     </div>
     <div id='quiz-container' v-if="selectedTopic">
-      <quiz-question :selectedTopic="selectedTopic" :user='user'/>
+      <quiz-question v-if="!answerSelected" :selectedTopic="selectedTopic" :user='user'/>
+      <quiz-answer v-if="answerSelected" :questionPassed="questionPassed" :answerCountry="answerCountry"/>
     </div>
   </div>
 
@@ -18,6 +19,7 @@
 import {eventBus} from '../main.js'
 import QuizTopic from './QuizTopic.vue'
 import QuizQuestion from './QuizQuestion.vue'
+import QuizAnswer from './QuizAnswer.vue'
 
 export default {
   name: 'map-overlay',
@@ -32,7 +34,8 @@ export default {
   },
   components: {
     'quiz-topic': QuizTopic,
-    'quiz-question': QuizQuestion
+    'quiz-question': QuizQuestion,
+    'quiz-answer': QuizAnswer
   },
   mounted(){
     eventBus.$on('selected-topic', (topic) => {
