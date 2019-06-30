@@ -34,6 +34,7 @@ export default {
     apiTopicName(){
       if (this.selectedTopic === "Capitals Quiz") { return "capital" }
       else if (this.selectedTopic === "Flags Quiz") { return "flag" }
+      else if (this.selectedTopic === "Continents Quiz") { return "region" }
       else if (this.selectedTopic === "Currencies Quiz") { return "currencies[0].name" }
     }
   },

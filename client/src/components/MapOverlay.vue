@@ -5,6 +5,7 @@
       <quiz-topic topic="Capitals Quiz"/>
       <quiz-topic topic="Flags Quiz"/>
       <quiz-topic topic="Currency Quiz"/>
+      <quiz-topic topic="Continents Quiz"/>
     </div>
     <div id='quiz-container' v-if="selectedTopic">
       <quiz-question :selectedTopic="selectedTopic" :user='user'/>
