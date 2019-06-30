@@ -57,10 +57,9 @@ export default {
       .then( () => this.prepareQuiz() )
     },
     prepareQuiz(){
-      // Filter out answered questions and ones with no capitals
+      // Filter out answered questions
       let availableCountries = this.countryData
       .filter(country => !this.user[this.dbTopicName].includes(country.name))
-      // .filter(country => !country.name)
 
       // Pick random country for question
       this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
@@ -68,9 +67,10 @@ export default {
       // Put correct answer into array
       this.answerArray.push(this.answerCountry[this.apiTopicName])
 
-      // Put 3 incorrect answers into array
+      // Ensure correct answer can only be in array once
       const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
 
+      // Put 3 incorrect answers into array
       for(let i=0; i < 3; i++) {
         this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
       }
