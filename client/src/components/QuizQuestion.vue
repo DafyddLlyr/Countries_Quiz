@@ -3,10 +3,16 @@
   <div id="quiz-question">
     <h2>{{selectedTopic}}</h2>
     <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
-    <div id="answer-boxes" v-for="answer in answerArray">
-      <p v-on:click="handleSelectAnswer(answer)">{{answer}}</p>
+    <div id="answer-boxes" >
+      <div class="answer-container" v-for="answer in answerArray"
+      v-if="apiTopicName === 'flag'">
+      <img :src="answer" alt="flag" class="flag-display">
     </div>
+    <p v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
+    v-on:click="handleSelectAnswer(answer)">
+    {{answer}} </p>
   </div>
+</div>
 
 </template>
 
@@ -92,6 +98,21 @@ export default {
   height: 60vh;
   background-color: purple;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+}
+
+.flag-display {
+  height: 15vw;
+}
+
+#answer-boxes {
+  width: 70vw;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 3vw;
 }
 
 </style>
