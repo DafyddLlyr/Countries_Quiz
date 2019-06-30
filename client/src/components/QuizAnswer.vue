@@ -1,7 +1,7 @@
 <template lang="html">
 
   <div id="quiz-answer">
-    <quiz-progress :questionCounter="questionCounter"/>
+    <quiz-progress :questionCounter="questionCounter + 1"/>
     <h2>{{displayAnswer()}}</h2>
     <button v-on:click="handleNextQuestion" type="button" name="button">Next Question</button>
   </div>

@@ -57,15 +57,13 @@ export default {
       .then( () => this.prepareQuiz() )
     },
     prepareQuiz(){
-      // Pick random country for question
-      let randomCountry = this.countryData[Math.floor(Math.random() * this.countryData.length)]
+      // Filter out answered questions and ones with no capitals
+      let availableCountries = this.countryData
+      .filter(country => !this.user[this.dbTopicName].includes(country.name))
+      // .filter(country => !country.name)
 
-      // Check user hasn't answered question
-      if(this.user[this.dbTopicName].includes(randomCountry.name)){
-        this.prepareQuiz()
-      } else {
-        this.answerCountry = randomCountry
-      }
+      // Pick random country for question
+      this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
 
       // Put correct answer into array
       this.answerArray.push(this.answerCountry[this.apiTopicName])
