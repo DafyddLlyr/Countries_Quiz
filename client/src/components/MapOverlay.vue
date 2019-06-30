@@ -24,7 +24,10 @@ export default {
   props: ['user'],
   data() {
     return {
-      'selectedTopic': null
+      'selectedTopic': null,
+      'answerSelected': false,
+      'questionPassed': null,
+      'answerCountry': null
     }
   },
   components: {
@@ -37,6 +40,11 @@ export default {
     })
     eventBus.$on('show-topics', () => {
       this.selectedTopic = null
+    })
+    eventBus.$on('answer-selected', result => {
+      this.answerSelected = true;
+      this.questionPassed = result["userAnswer"];
+      this.answerCountry = result["country"]
     })
   }
 

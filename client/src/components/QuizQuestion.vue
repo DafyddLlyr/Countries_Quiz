@@ -6,7 +6,7 @@
     <div id="answer-boxes" >
       <div class="answer-container" v-for="answer in answerArray"
       v-if="apiTopicName === 'flag'">
-      <img :src="answer" alt="flag" class="flag-display">
+      <img :src="answer" alt="flag" class="flag-display" v-on:click="handleSelectAnswer(answer)">
     </div>
     <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
     v-on:click="handleSelectAnswer(answer)">
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js'
 import UserService from '@/services/UserService.js'
 
 export default {
@@ -79,10 +80,10 @@ export default {
     },
     handleSelectAnswer(answer){
       // Work out if answer is correct
-      const result = (answer === this.answerCountry[this.apiTopicName])
+      const passed = (answer === this.answerCountry[this.apiTopicName])
 
       // If correct save result for user in passed
-      if(result) {
+      if(passed) {
         UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
       }
 
@@ -90,7 +91,8 @@ export default {
 
       // If incorreect save result in failed - later date
 
-      // Move onto next question
+      // Move onto quiz answer
+      eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
 
 
     }
