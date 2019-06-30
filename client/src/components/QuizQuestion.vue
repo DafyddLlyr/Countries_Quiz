@@ -8,7 +8,7 @@
       v-if="apiTopicName === 'flag'">
       <img :src="answer" alt="flag" class="flag-display">
     </div>
-    <p v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
+    <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
     v-on:click="handleSelectAnswer(answer)">
     {{answer}} </p>
   </div>
@@ -93,18 +93,16 @@ export default {
 
 <style lang="css" scoped>
 
+
 #quiz-question {
   width: 70vw;
-  height: 60vh;
+  min-height: 60vh;
+  padding: 2vw;
   background-color: purple;
   color: white;
   display: flex;
   flex-direction: column;
   align-content: space-between;
-}
-
-.flag-display {
-  height: 15vw;
 }
 
 #answer-boxes {
@@ -113,6 +111,21 @@ export default {
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
   grid-gap: 3vw;
+}
+
+.flag-display {
+  height: 15vw;
+  cursor: pointer;
+  border: 4px solid rgba(0, 0, 0, 0.0);
+}
+
+.answer-display {
+  cursor:pointer;
+  border: 4px solid rgba(0, 0, 0, 0.0);
+}
+
+.answer-display:hover, .flag-display:hover {
+  border: 4px solid white;
 }
 
 </style>
