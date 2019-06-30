@@ -4,19 +4,23 @@
 
    <div id='earth_div'></div>
 
-   <div id='topic-container' v-if='!selectedTopic'>
-     <quiz-topic topic='Capitals Quiz' :user="user"/>
-     <quiz-topic topic='Flags Quiz' :user="user" />
-     <quiz-topic topic='Currency Quiz' :user="user" />
-     <quiz-topic topic='Continents Quiz' :user="user" />
-   </div>
+   <div id="select-quiz" v-if="quizChoice">
 
-   <div id='quiz-container' v-if='selectedTopic'>
-     <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
-     <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
-     <quiz-complete v-if='quizCompleted' />
-   </div>
-   
+     <div id='topic-container' v-if='!selectedTopic'>
+       <quiz-topic topic='Capitals Quiz' :user="user"/>
+       <quiz-topic topic='Flags Quiz' :user="user" />
+       <quiz-topic topic='Currency Quiz' :user="user" />
+       <quiz-topic topic='Continents Quiz' :user="user" />
+     </div>
+
+     <div id='quiz-container' v-if='selectedTopic'>
+       <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
+       <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
+       <quiz-complete v-if='quizCompleted' />
+     </div>
+
+    </div>
+
  </div>
 
 </template>
@@ -38,7 +42,8 @@ export default {
      'questionPassed': null,
      'answerCountry': null,
      'questionCounter': 0,
-     'quizCompleted': false
+     'quizCompleted': false,
+     'quizChoice': null
    }
  },
  components: {
@@ -53,7 +58,11 @@ export default {
      this.selectedTopic = topic
    })
    eventBus.$on('show-topics', () => {
-     this.selectedTopic = null
+     this.selectedTopic = null;
+     this.quizChoice = true;
+   })
+   eventBus.$on('globe-selected', () => {
+     this.quizChoice = false;
    })
    eventBus.$on('answer-selected', result => {
      this.answerSelected = true;
@@ -106,6 +115,15 @@ export default {
  grid-area: map-overlay;
  display: flex;
  justify-content: center;
+}
+
+#select-quiz {
+  /* position: absolute;
+  background: none;
+  top: 10vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
 }
 
 #topic-container {

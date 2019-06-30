@@ -3,6 +3,8 @@
     <h3>Hello, {{user.name}}!</h3>
     <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
     <br>
+    <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
+    <br>
     <label for="country">Pick a country to explore:</label>
     <select v-model="countryChoice" name="country" @change="handleCountryChoice">
       <option value="" disabled>Please select a country:</option>
@@ -38,6 +40,9 @@ export default {
     },
     handleCountryChoice(){
       eventBus.$emit('country-choice', this.countryChoice)
+    },
+    handleShowGlobe(){
+      eventBus.$emit('globe-selected')
     },
     fetchCountryData(){
       fetch('https://restcountries.eu/rest/v2/all')
