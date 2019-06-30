@@ -2,15 +2,16 @@
 
   <div id="quiz-answer">
     <h2>{{displayAnswer()}}</h2>
+    <button v-on:click="handleNextQuestion" type="button" name="button">Next Question</button>
   </div>
 
 </template>
 
 <script>
-
+import {eventBus} from '../main.js'
 export default {
   name: 'quiz-answer',
-  props: ['questionPassed', 'answerCountry'],
+  props: ['questionPassed', 'answerCountry', 'questionCounter'],
   methods: {
     displayAnswer() {
       if (this.questionPassed) {
@@ -18,6 +19,18 @@ export default {
       } else {
         return "That's incorrect :("
       }
+    },
+    handleNextQuestion() {
+      if (this.questionCounter === 4) {
+        eventBus.$emit('quiz-ended') //Fix me!
+      } else {
+        eventBus.$emit('increment-counter')
+      }
+      // Increment counter
+      // Check counter
+      // Turn off QuizAnswer
+      // Turn on QuizQuestion
+
     }
   }
 }

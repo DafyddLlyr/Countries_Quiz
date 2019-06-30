@@ -70,6 +70,8 @@ export default {
       // Put 3 incorrect answers into array
       const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
 
+      console.log(remainingCountries.length);
+
       for(let i=0; i < 3; i++) {
         this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
       }
