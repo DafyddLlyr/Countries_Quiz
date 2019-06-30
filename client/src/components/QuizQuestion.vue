@@ -68,11 +68,16 @@ export default {
       this.answerArray.push(this.answerCountry[this.apiTopicName])
 
       // Ensure correct answer can only be in array once
-      const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
+      let remainingCountries = this.countryData.filter(country => country[this.apiTopicName] !== this.answerCountry[this.apiTopicName])
 
       // Put 3 incorrect answers into array
       for(let i=0; i < 3; i++) {
-        this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
+        let randomCountry = remainingCountries[Math.floor(Math.random() * remainingCountries.length)]
+
+        this.answerArray.push(randomCountry[this.apiTopicName])
+
+        // Ensure no duplicates in answer array
+        remainingCountries = remainingCountries.filter(country => country[this.apiTopicName] !== randomCountry[this.apiTopicName])
       }
 
       // Shuffle array of answers
