@@ -2,9 +2,7 @@
 
  <div id='map-overlay'>
 
-
-   <div id='earth_div'>
-   </div>
+   <div id='earth_div'></div>
 
    <div id='topic-container' v-if='!selectedTopic'>
      <quiz-topic topic='Capitals Quiz' :user="user"/>
@@ -12,11 +10,13 @@
      <quiz-topic topic='Currency Quiz' :user="user" />
      <quiz-topic topic='Continents Quiz' :user="user" />
    </div>
+
    <div id='quiz-container' v-if='selectedTopic'>
-     <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user'/>
+     <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
      <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
      <quiz-complete v-if='quizCompleted' />
    </div>
+   
  </div>
 
 </template>

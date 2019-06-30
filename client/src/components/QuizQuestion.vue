@@ -1,6 +1,7 @@
 <template lang="html">
 
   <div id="quiz-question">
+    <quiz-progress :questionCounter="questionCounter"/>
     <h2>{{selectedTopic}}</h2>
     <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
     <div id="answer-boxes" >
@@ -19,16 +20,20 @@
 <script>
 import {eventBus} from '../main.js'
 import UserService from '@/services/UserService.js'
+import QuizProgress from './QuizProgress.vue'
 
 export default {
   name: 'quiz-question',
-  props: ['selectedTopic', 'user'],
+  props: ['selectedTopic', 'user', 'questionCounter'],
   data(){
     return {
       'countryData': [],
       'answerCountry': {},
       'answerArray': []
     }
+  },
+  components: {
+    'quiz-progress': QuizProgress
   },
   computed: {
     dbTopicName(){
@@ -43,8 +48,6 @@ export default {
   },
   mounted() {
     this.fetchCountryData()
-
-
   },
   methods: {
     fetchCountryData(){
@@ -70,8 +73,6 @@ export default {
       // Put 3 incorrect answers into array
       const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
 
-      console.log(this.countryData.map(country => country.name));
-
       for(let i=0; i < 3; i++) {
         this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
       }
@@ -95,8 +96,6 @@ export default {
 
       // Move onto quiz answer
       eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
-
-
     }
   }
 }

@@ -1,6 +1,7 @@
 <template lang="html">
 
   <div id="quiz-answer">
+    <quiz-progress :questionCounter="questionCounter"/>
     <h2>{{displayAnswer()}}</h2>
     <button v-on:click="handleNextQuestion" type="button" name="button">Next Question</button>
   </div>
@@ -9,9 +10,14 @@
 
 <script>
 import {eventBus} from '../main.js'
+import QuizProgress from './QuizProgress.vue'
+
 export default {
   name: 'quiz-answer',
   props: ['questionPassed', 'answerCountry', 'questionCounter'],
+  components: {
+    'quiz-progress': QuizProgress
+  },
   methods: {
     displayAnswer() {
       if (this.questionPassed) {
