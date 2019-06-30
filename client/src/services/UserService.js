@@ -1,4 +1,4 @@
-const baseURL = 'http://locaslhost:3000/api/users/'
+const baseURL = 'http://localhost:3000/api/users/'
 
 export default {
   getUsers(){
@@ -6,8 +6,8 @@ export default {
     .then(res => res.json())
   },
 
-  updatePassed(payload){
-    return fetch(baseURL, {
+  updateUser(id, payload){
+    return fetch(baseURL + id, {
       method: 'PUT',
       body: JSON.stringify(payload),
       headers: {'Content-Type': 'application/json'}

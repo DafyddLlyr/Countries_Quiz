@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService.js'
+
 export default {
   name: 'quiz-question',
   props: ['selectedTopic', 'user'],
@@ -55,7 +57,7 @@ export default {
       let randomCountry = this.countryData[Math.floor(Math.random() * this.countryData.length)]
 
       // Check user hasn't answered question
-      if(this.user[this.dbTopicName]["passed"].includes(randomCountry.name)){
+      if(this.user[this.dbTopicName].includes(randomCountry.name)){
         this.prepareQuiz()
       } else {
         this.answerCountry = randomCountry
@@ -76,15 +78,17 @@ export default {
 
     },
     handleSelectAnswer(answer){
+      // Work out if answer is correct
       const result = (answer === this.answerCountry[this.apiTopicName])
-        // console.log(result);
-        // console.log(answer);
-        // console.log(this.answerCountry[this.apiTopicName]);
+
       // If correct save result for user in passed
+      if(result) {
+        UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
+      }
 
-      // Handle previously failed question
+      // Handle previously failed question - later date
 
-      // If incorreect save result in failed
+      // If incorreect save result in failed - later date
 
       // Move onto next question
 
