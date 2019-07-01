@@ -1,17 +1,44 @@
 <template lang="html">
   <div id="nav-bar">
-    <h3>Hello, {{user.name}}!</h3>
-    <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
+    <div id="nav-bar-info">
+      <h3>Hello, {{user.name}}!</h3>
+      <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
+      <br>
+      <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
+      <br>
+      <label for="country"><h3>Pick a country to explore:</h3></label>
+      <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
+        <option value="" disabled>Please select a country:</option>
+        <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
+      </select>
+      <br>
+    </div>
+      <div id="country-info" v-if="countryChoice" v-model="countryChoice">
+        <table>
+          <tr>
+            <th>{{countryChoice.name}}</th>
+            <th><img :src="countryChoice.flag" :alt="countryChoice.name" width=100></th>
+          </tr>
+          <tr>
+            <td>Continent: </td>
+            <td>{{countryChoice.region}}</td>
+          </tr>
+          <tr>
+            <td>Capital: </td>
+            <td>{{countryChoice.capital}}</td>
+          </tr>
+          <tr>
+            <td>Currency: </td>
+            <td>{{countryChoice.currencies[0].name}}</td>
+          </tr>
+          <tr>
+            <td>Population: </td>
+            <td>{{countryChoice.population.toLocaleString()}}</td>
+          </tr>
+        </table>
+      </div>
     <br>
-    <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
-    <br>
-    <label for="country">Pick a country to explore:</label>
-    <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
-      <option value="" disabled>Please select a country:</option>
-      <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
-    </select>
-    <br>
-    <button v-on:click="handleLogOut" type="button" name="button">Log out</button>
+    <button id="log-out" v-on:click="handleLogOut" type="button" name="button">Log out</button>
   </div>
 
 </template>
@@ -24,7 +51,7 @@ export default {
   data(){
     return {
       'countryData': [],
-      'countryChoice': {}
+      'countryChoice': null
     }
   },
   props: ['user'],
@@ -61,11 +88,57 @@ export default {
   color: white;
   grid-area: nav-bar;
   height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #select {
   width: 15vw;
   font-size: inherit;
+}
+
+#nav-bar-info {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#country-info {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+table {
+  text-align: center;
+  background: grey;
+}
+
+th {
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+  border-color: #c0c0c0;
+}
+
+td {
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+  border-color: #c0c0c0;
+}
+
+#log-out {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
 }
 
 </style>
