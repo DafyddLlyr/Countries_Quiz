@@ -136,6 +136,8 @@ export default {
 
 #quiz-container {
  background-color: rgba(0, 0, 0, 0.0);
+ width: 80vw;
+ height: 90vh;
  display: flex;
  justify-content: center;
  align-items: center;
