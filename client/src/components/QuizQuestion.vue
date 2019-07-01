@@ -3,7 +3,7 @@
   <div id="quiz-question">
     <quiz-progress :questionCounter="questionCounter"/>
     <h2>{{selectedTopic}}</h2>
-    <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
+    <h3 v-if="answerCountry">{{displayQuestion(apiTopicName)}}</h3>
     <div id="answer-boxes" >
 
       <div class="answer-container" v-for="answer in answerArray"
@@ -51,11 +51,10 @@ export default {
       else if (this.selectedTopic === "Flags Quiz") { return "flag" }
       else if (this.selectedTopic === "Continents Quiz") { return "region" }
       else if (this.selectedTopic === "Currencies Quiz") { return "currencies" }
-    }
+    },
   },
   mounted() {
     this.fetchCountryData()
-    // this.prepareQuiz()
   },
   methods: {
     fetchCountryData(){
@@ -116,6 +115,16 @@ export default {
 
       // Move onto quiz answer
       eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
+    },
+    displayQuestion(topic) {
+      if (topic === "region") {
+        return `On which contient is ${this.answerCountry.name}?`
+      } else if (topic === 'flag') {
+        return `Which of these is the flag of ${this.answerCountry.name}?`
+      } else if (topic === 'currencies') {
+        return `What is the currency of ${this.answerCountry.name}?`
+      }
+      return `What is the ${topic} of ${this.answerCountry.name}?`
     }
   }
 }
@@ -140,11 +149,11 @@ export default {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  grid-gap: 3vw;
+  grid-gap: 2vw;
 }
 
 .flag-display {
-  height: 15vw;
+  height: 10vw;
   cursor: pointer;
   border: 4px solid rgba(0, 0, 0, 0.0);
 }
