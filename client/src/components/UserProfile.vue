@@ -51,6 +51,17 @@
 
 
     </div>
+    <div id="map-progress">
+      <h2>Progress Map</h2>
+      <h4>How close are you to exploring the entire world?</h4>
+      <GChart
+      :settings="{ packages: ['geochart'] , mapsApiKey: myMapsApiKey}"
+      type="GeoChart"
+      :data="mapProgressData"
+      :options="mapProgressOptions"
+      />
+    </div>
+
 
   </div>
 </div>
@@ -59,6 +70,7 @@
 
 <script>
 import { GChart } from 'vue-google-charts'
+import { googleMapsAPIKey } from '../../private/keys.js'
 
 export default {
   name: 'user-profile',
@@ -71,7 +83,14 @@ export default {
   },
   data() {
     return {
+      myMapsApiKey: googleMapsAPIKey,
       user: null,
+      mapProgressOptions: {
+        colorAxis: {colors: ['lightgreen', 'green', 'green']},
+        datalessRegionColor: 'white',
+        backgroundColor: '',
+        legend: 'none'
+      },
       totalProgressOptions: {
         pieHole: 0.3,
         backgroundColor: {
@@ -152,6 +171,27 @@ export default {
           ['Remaining', 250 - this.user.continentsQuiz.length]
         ]
       }
+    },
+    mapProgressData() {
+      if (this.user) {
+        let flagsResult = this.user.flagsQuiz.map(country => [country, 1])
+        let capitalsResult = this.user.capitalsQuiz.map(country => [country, 1])
+        let currenciesResult = this.user.currenciesQuiz.map(country => [country, 1])
+        let continentsResult = this.user.continentsQuiz.map(country => [country, 1])
+
+        let result = flagsResult.concat(capitalsResult, currenciesResult, continentsResult)
+
+        result.sort()
+
+        for(let i=0; i < result.length - 1; i++){
+          if(result[i][0] === result[i + 1][0]) {
+            result[i][1] += 1;
+            result.splice(i + 1, 1)
+          }
+        }
+        result.unshift(['Country', 'Correct Answers'])
+        return result
+      }
     }
   },
   methods: {
@@ -165,6 +205,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#user-profile {
+  max-height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgrey;
+}
 
 #profile-charts {
   /* background-color: pink; */
@@ -188,6 +237,11 @@ export default {
 .quiz-process {
   width: 10vw;
   height: 10vw;
+}
+
+#map-progress {
+  margin-top: 3vw;
+  width: 90%;
 }
 
 </style>

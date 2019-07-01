@@ -188,7 +188,6 @@ export default {
 
 #profile {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.6);
   width: 80vw;
   height: 90vh;
   top: 10vh;
