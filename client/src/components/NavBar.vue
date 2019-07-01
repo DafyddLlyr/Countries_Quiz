@@ -5,13 +5,40 @@
     <br>
     <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
     <br>
-    <label for="country">Pick a country to explore:</label>
+    <label for="country"><h3>Pick a country to explore:</h3></label>
     <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
       <option value="" disabled>Please select a country:</option>
       <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
     </select>
     <br>
-    <button v-on:click="handleLogOut" type="button" name="button">Log out</button>
+    <div id="country-info" v-if="countryChoice" v-model="countryChoice">
+      <table>
+        <tr>
+          <th>{{countryChoice.name}}</th>
+        </tr>
+        <tr>
+          <td>Continent: </td>
+          <td>{{countryChoice.region}}</td>
+        </tr>
+        <tr>
+          <td>Capital: </td>
+          <td>{{countryChoice.capital}}</td>
+        </tr>
+        <tr>
+          <td>Currency: </td>
+          <td>{{countryChoice.currencies[0].name}}</td>
+        </tr>
+        <tr>
+          <td>Population: </td>
+          <td>{{countryChoice.population.toLocaleString()}}</td>
+        </tr>
+        <tr>
+          <img :src="countryChoice.flag" :alt="countryChoice.name" width=100>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <button id="log-out" v-on:click="handleLogOut" type="button" name="button">Log out</button>
   </div>
 
 </template>
@@ -24,7 +51,7 @@ export default {
   data(){
     return {
       'countryData': [],
-      'countryChoice': {}
+      'countryChoice': null
     }
   },
   props: ['user'],
@@ -66,6 +93,32 @@ export default {
 #select {
   width: 15vw;
   font-size: inherit;
+}
+
+#country-info {
+  background: grey;
+}
+
+table {
+  text-align: center;
+}
+
+th {
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+  border-color: #c0c0c0;
+}
+
+td {
+  text-align: center;
+  border-style: solid;
+  border-width: thin;
+  border-color: #c0c0c0;
+}
+
+#log-out {
+
 }
 
 </style>
