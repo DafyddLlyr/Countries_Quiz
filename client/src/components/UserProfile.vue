@@ -1,4 +1,7 @@
 <template lang="html">
+  <div id='user-profile'>
+    <h2>User Profile</h2>
+  </div>
 
 </template>
 
@@ -8,4 +11,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+#user-profile {
+  background-color: grey;
+}
+
 </style>

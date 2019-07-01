@@ -21,6 +21,10 @@
 
     </div>
 
+    <div v-if="profileSelected" id="profile">
+      <user-profile />
+    </div>
+
   </div>
 
 </template>
@@ -31,6 +35,7 @@ import QuizTopic from './QuizTopic.vue'
 import QuizQuestion from './QuizQuestion.vue'
 import QuizAnswer from './QuizAnswer.vue'
 import QuizComplete from './QuizComplete.vue'
+import UserProfile from './UserProfile.vue'
 
 export default {
   name: 'map-overlay',
@@ -47,14 +52,16 @@ export default {
       'mapDisplayCountry': null,
       'globe': null,
       'displayMarker': null,
-      'globeSpin': false // Change me to turn animation on
+      'globeSpin': false, // Change me to turn animation on
+      'profileSelected': false
     }
   },
   components: {
     'quiz-topic': QuizTopic,
     'quiz-question': QuizQuestion,
     'quiz-answer': QuizAnswer,
-    'quiz-complete': QuizComplete
+    'quiz-complete': QuizComplete,
+    'user-profile': UserProfile
   },
   mounted(){
     this.initializeGlobe()
@@ -65,9 +72,11 @@ export default {
     eventBus.$on('show-topics', () => {
       this.selectedTopic = null;
       this.quizChoice = true;
+      this.profileSelected = false;
     })
     eventBus.$on('globe-selected', () => {
       this.quizChoice = false;
+      this.profileSelected = false;
     })
     eventBus.$on('answer-selected', result => {
       this.answerSelected = true;
@@ -95,6 +104,10 @@ export default {
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
       this.globe.panTo(country.latlng);
+    })
+    eventBus.$on('profile-selected', () => {
+      this.profileSelected = true;
+      this.quizChoice = false;
     })
   },
   methods: {
@@ -166,6 +179,17 @@ export default {
   left: 20vw;
   position: absolute !important;
   background-color: lightgrey;
+}
+
+#profile {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.6);
+  width: 80vw;
+  height: 90vh;
+  top: 10vh;
+  right: 0;
+  bottom: 0;
+  left: 20vw;
 }
 
 </style>
