@@ -16,7 +16,7 @@
       <div id='quiz-container' v-if='selectedTopic'>
         <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
         <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
-        <quiz-complete v-if='quizCompleted' />
+        <quiz-complete v-if='quizCompleted' :correctAnswerCounter="correctAnswerCounter" />
       </div>
 
     </div>
@@ -49,6 +49,7 @@ export default {
       'questionCounter': 0,
       'quizCompleted': false,
       'quizChoice': false,
+      'correctAnswerCounter': 0,
       'mapDisplayCountry': null,
       'globe': null,
       'displayMarker': null,
@@ -91,6 +92,9 @@ export default {
       this.questionCounter += 1;
       this.quizCompleted = true;
     })
+    eventBus.$on('correct-answer', () => {
+      this.correctAnswerCounter +=1;
+    })
     eventBus.$on('quiz-reset', () => {
       this.selectedTopic = null;
       this.answerSelected = false;
@@ -98,6 +102,7 @@ export default {
       this.answerCountry = null;
       this.questionCounter = 0;
       this.quizCompleted = false;
+      this.correctAnswerCounter = 0;
     })
     eventBus.$on('country-choice', country => {
       this.mapDisplayCountry = country;
