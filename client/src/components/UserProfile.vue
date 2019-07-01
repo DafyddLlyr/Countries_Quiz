@@ -62,12 +62,16 @@ import { GChart } from 'vue-google-charts'
 
 export default {
   name: 'user-profile',
-  props: ['user'],
+  props: ['userID'],
+  mounted() {
+    this.fetchData()
+  },
   components: {
     'GChart': GChart
   },
   data() {
     return {
+      user: null,
       totalProgressOptions: {
         pieHole: 0.3,
         backgroundColor: {
@@ -101,43 +105,60 @@ export default {
   },
   computed: {
     totalProgress() {
-      let progress = this.user.capitalsQuiz.length +
-      this.user.flagsQuiz.length +
-      this.user.currenciesQuiz.length +
-      this.user.continentsQuiz.length
-      return [
-        ['Status', 'Completed'],
-        ['Completed', progress],
-        ['Remaining', 1000]
-      ]
+      if (this.user) {
+        let progress = this.user.capitalsQuiz.length +
+        this.user.flagsQuiz.length +
+        this.user.currenciesQuiz.length +
+        this.user.continentsQuiz.length
+        return [
+          ['Status', 'Completed'],
+          ['Completed', progress],
+          ['Remaining', 1000]
+        ]
+      }
     },
     capitalsProgress() {
-      return [
-        ['Status', 'Completed'],
-        ['Completed', this.user.capitalsQuiz.length],
-        ['Remaining', 250 - this.user.capitalsQuiz.length]
-      ]
+      if (this.user) {
+        return [
+          ['Status', 'Completed'],
+          ['Completed', this.user.capitalsQuiz.length],
+          ['Remaining', 250 - this.user.capitalsQuiz.length]
+        ]
+      }
     },
     flagsProgress() {
-      return [
-        ['Status', 'Completed'],
-        ['Completed', this.user.flagsQuiz.length],
-        ['Remaining', 250 - this.user.flagsQuiz.length]
-      ]
+      if (this.user) {
+        return [
+          ['Status', 'Completed'],
+          ['Completed', this.user.flagsQuiz.length],
+          ['Remaining', 250 - this.user.flagsQuiz.length]
+        ]
+      }
     },
     currenciesProgress() {
-      return [
-        ['Status', 'Completed'],
-        ['Completed', this.user.currenciesQuiz.length],
-        ['Remaining', 250 - this.user.currenciesQuiz.length]
-      ]
+      if (this.user) {
+        return [
+          ['Status', 'Completed'],
+          ['Completed', this.user.currenciesQuiz.length],
+          ['Remaining', 250 - this.user.currenciesQuiz.length]
+        ]
+      }
     },
     continentsProgress() {
-      return [
-        ['Status', 'Completed'],
-        ['Completed', this.user.continentsQuiz.length],
-        ['Remaining', 250 - this.user.continentsQuiz.length]
-      ]
+      if (this.user) {
+        return [
+          ['Status', 'Completed'],
+          ['Completed', this.user.continentsQuiz.length],
+          ['Remaining', 250 - this.user.continentsQuiz.length]
+        ]
+      }
+    }
+  },
+  methods: {
+    fetchData(){
+      fetch(`http://localhost:3000/api/users/${this.userID._id}`)
+      .then(res => res.json())
+      .then(result => this.user = result)
     }
   }
 }
