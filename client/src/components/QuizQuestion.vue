@@ -60,7 +60,11 @@ export default {
     prepareQuiz(){
       // Filter out answered questions
       let availableCountries = this.countryData
-      .filter(country => !this.user[this.dbTopicName].includes(country.name))
+      .filter(country =>
+        !this.user[this.dbTopicName].includes(country.name)
+        && country[this.apiTopicName] !== ""
+        && country.hasOwnProperty(this.apiTopicName)
+      )
 
       // Pick random country for question
       this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
@@ -69,7 +73,12 @@ export default {
       this.answerArray.push(this.answerCountry[this.apiTopicName])
 
       // Ensure correct answer can only be in array once
-      let remainingCountries = this.countryData.filter(country => country[this.apiTopicName] !== this.answerCountry[this.apiTopicName])
+      let remainingCountries = this.countryData
+      .filter(country =>
+        country[this.apiTopicName] !== this.answerCountry[this.apiTopicName]
+        && country[this.apiTopicName] !== ""
+        && country.hasOwnProperty(this.apiTopicName)
+      )
 
       // Put 3 incorrect answers into array
       for(let i=0; i < 3; i++) {
