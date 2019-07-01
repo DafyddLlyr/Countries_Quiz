@@ -154,7 +154,7 @@ export default {
   width: 70vw;
   height: 30vh;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   grid-gap: 1vw;
   align-items: space-around;
