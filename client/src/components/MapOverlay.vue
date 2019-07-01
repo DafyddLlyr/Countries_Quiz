@@ -47,7 +47,7 @@ export default {
       'mapDisplayCountry': null,
       'globe': null,
       'displayMarker': null,
-      'globeSpin': true
+      'globeSpin': false // Change me to turn animation on
     }
   },
   components: {
@@ -58,6 +58,7 @@ export default {
   },
   mounted(){
     this.initializeGlobe()
+    // this.checkGlobeSpin() Comment me in to turn animation on
     eventBus.$on('selected-topic', (topic) => {
       this.selectedTopic = topic
     })
@@ -91,7 +92,6 @@ export default {
     })
     eventBus.$on('country-choice', country => {
       this.mapDisplayCountry = country;
-      this.globeSpin = false
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
       this.globe.panTo(country.latlng);
@@ -106,17 +106,17 @@ export default {
         maxZoom: 5,
         attribution: 'NASA'
       }).addTo(this.globe);
+    },
+    checkGlobeSpin: function() { // Not yet called
       let before = null;
       let earth = this.globe
-      if (this.globeSpin) {
-        requestAnimationFrame(function animate(now) {
-          let c = earth.getPosition();
-          let elapsed = before? now - before: 0;
-          before = now;
-          earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
-          requestAnimationFrame(animate);
-        });
-      }
+      requestAnimationFrame(function animate(now) {
+        let c = earth.getPosition();
+        let elapsed = before ? now - before: 0;
+        before = now;
+        earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
+        requestAnimationFrame(animate);
+      });
     }
   }
 }
