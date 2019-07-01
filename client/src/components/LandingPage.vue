@@ -51,4 +51,47 @@ export default {
   height: 100vh;
 }
 
+h1 {
+  color: red;
+  font-size: 50px;
+  background-color: lightgreen;
+  text-decoration-style: double;
+  text-shadow: 0 2px white, 0 3px #777;
+  font-family: 'Orienta', sans-serif;
+  font-style: italic;
+  letter-spacing: 1px;
+  box-shadow:
+		inset 0 0 0 1px rgba(53,86,129, 0.4),
+		inset 0 0 5px rgba(53,86,129, 0.5),
+		inset -285px 0 35px lightblue;
+
+}
+ select {
+  font-size: 30px;
+  background-color: lightpink;
+  text-shadow: 0 2px red, 0 3px #777;
+  margin-left: 10px;
+  padding-left: 2px;
+  left: 10px;
+  border: 2px solid black;
+
+}
+
+
+
+button {
+  font-size: 30px;
+  background-color: lightpink;
+  text-shadow: 0 2px red, 0 3px #777;
+  text-align: left;
+  margin-left: 10px;
+  padding-left: 2px;
+  border: 2px solid black;
+  
+}
+
+button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
 </style>

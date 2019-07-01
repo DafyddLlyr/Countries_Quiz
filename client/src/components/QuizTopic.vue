@@ -28,6 +28,10 @@ export default {
   height: 20vh;
   background-color: pink;
   margin: 5vw;
+  outline-style: dotted;
+  
+
+
 }
 
 </style>

@@ -16,7 +16,8 @@ export default {
 <style lang="css" scoped>
 
 #profile-header {
-  background: green;
+  background-image: linear-gradient(green, yellow);
+  /* background: green; */
   grid-area: header;
 }
 

@@ -43,6 +43,15 @@ export default {
 </script>
 
 <style>
+#landing-page {
+  background-image: url('assets/background.png');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%
+
+}
 * {
   margin: 0;
   padding: 0;
