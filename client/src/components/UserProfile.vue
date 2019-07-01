@@ -41,7 +41,7 @@
       </div>
 
       <div>
-        <h3>Contients Quiz</h3>
+        <h3>Continents Quiz</h3>
         <GChart class="quiz-process"
         type="PieChart"
         :data="continentsProgress"
@@ -115,28 +115,28 @@ export default {
       return [
         ['Status', 'Completed'],
         ['Completed', this.user.capitalsQuiz.length],
-        ['Remaining', 1000]
+        ['Remaining', 250 - this.user.capitalsQuiz.length]
       ]
     },
     flagsProgress() {
       return [
         ['Status', 'Completed'],
         ['Completed', this.user.flagsQuiz.length],
-        ['Remaining', 1000]
+        ['Remaining', 250 - this.user.flagsQuiz.length]
       ]
     },
     currenciesProgress() {
       return [
         ['Status', 'Completed'],
         ['Completed', this.user.currenciesQuiz.length],
-        ['Remaining', 1000]
+        ['Remaining', 250 - this.user.currenciesQuiz.length]
       ]
     },
     continentsProgress() {
       return [
         ['Status', 'Completed'],
         ['Completed', this.user.continentsQuiz.length],
-        ['Remaining', 1000]
+        ['Remaining', 250 - this.user.continentsQuiz.length]
       ]
     }
   }
