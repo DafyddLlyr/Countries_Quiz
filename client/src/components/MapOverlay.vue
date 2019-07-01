@@ -43,7 +43,9 @@ export default {
      'answerCountry': null,
      'questionCounter': 0,
      'quizCompleted': false,
-     'quizChoice': false
+     'quizChoice': false,
+     'mapDisplayCountry': null,
+     'globe': null
    }
  },
  components: {
@@ -85,24 +87,29 @@ export default {
      this.questionCounter = 0;
      this.quizCompleted = false;
    })
+   eventBus.$on('country-choice', country => {
+     this.mapDisplayCountry = country;
+     console.log('hello from map overlay');
+     let marker = WE.marker(country.latlng).addTo(this.globe);
+   })
  },
  methods: {
    initializeGlobe: function() {
      let options = { zoom: 2.2, position: [47.19537,8.524404] };
-     let earth = new WE.map('earth_div', options);
+     this.globe = new WE.map('earth_div', options);
      WE.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
        minZoom: 0,
        maxZoom: 5,
        attribution: 'NASA'
-     }).addTo(earth);
-     let before = null;
-     requestAnimationFrame(function animate(now) {
-       let c = earth.getPosition();
-       let elapsed = before? now - before: 0;
-       before = now;
-       earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
-       requestAnimationFrame(animate);
-     });
+     }).addTo(this.globe);
+     // let before = null;
+     // requestAnimationFrame(function animate(now) {
+     //   let c = earth.getPosition();
+     //   let elapsed = before? now - before: 0;
+     //   before = now;
+     //   earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
+     //   requestAnimationFrame(animate);
+     // });
    }
  }
 }
