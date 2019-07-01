@@ -55,6 +55,7 @@ export default {
   },
   mounted() {
     this.fetchCountryData()
+    // this.prepareQuiz()
   },
   methods: {
     fetchCountryData(){
