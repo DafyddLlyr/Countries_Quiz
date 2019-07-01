@@ -1,31 +1,46 @@
 <template lang="html">
 
   <div id="quiz-question">
+    <quiz-progress :questionCounter="questionCounter"/>
     <h2>{{selectedTopic}}</h2>
     <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
     <div id="answer-boxes" >
+
       <div class="answer-container" v-for="answer in answerArray"
       v-if="apiTopicName === 'flag'">
-      <img :src="answer" alt="flag" class="flag-display">
+        <img :src="answer" alt="flag" class="flag-display" v-on:click="handleSelectAnswer(answer)" />
+      </div>
+
+      <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName === 'currencies'"
+      v-on:click="handleSelectAnswer(answer)">
+      {{answer[0].name}} </p>
+
+      <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag' && apiTopicName !== 'currencies'"
+      v-on:click="handleSelectAnswer(answer)">
+      {{answer}} </p>
+
     </div>
-    <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag'"
-    v-on:click="handleSelectAnswer(answer)">
-    {{answer}} </p>
-  </div>
 </div>
 
 </template>
 
 <script>
+import {eventBus} from '../main.js'
+import UserService from '@/services/UserService.js'
+import QuizProgress from './QuizProgress.vue'
+
 export default {
   name: 'quiz-question',
-  props: ['selectedTopic', 'user'],
+  props: ['selectedTopic', 'user', 'questionCounter'],
   data(){
     return {
       'countryData': [],
       'answerCountry': {},
       'answerArray': []
     }
+  },
+  components: {
+    'quiz-progress': QuizProgress
   },
   computed: {
     dbTopicName(){
@@ -35,13 +50,12 @@ export default {
       if (this.selectedTopic === "Capitals Quiz") { return "capital" }
       else if (this.selectedTopic === "Flags Quiz") { return "flag" }
       else if (this.selectedTopic === "Continents Quiz") { return "region" }
-      else if (this.selectedTopic === "Currencies Quiz") { return "currencies[0].name" }
+      else if (this.selectedTopic === "Currencies Quiz") { return "currencies" }
     }
   },
   mounted() {
     this.fetchCountryData()
-
-
+    // this.prepareQuiz()
   },
   methods: {
     fetchCountryData(){
@@ -51,24 +65,36 @@ export default {
       .then( () => this.prepareQuiz() )
     },
     prepareQuiz(){
-      // Pick random country for question
-      let randomCountry = this.countryData[Math.floor(Math.random() * this.countryData.length)]
+      // Filter out answered questions
+      let availableCountries = this.countryData
+      .filter(country =>
+        !this.user[this.dbTopicName].includes(country.name)
+        && country[this.apiTopicName] !== ""
+        && country.hasOwnProperty(this.apiTopicName)
+      )
 
-      // Check user hasn't answered question
-      if(this.user[this.dbTopicName]["passed"].includes(randomCountry.name)){
-        this.prepareQuiz()
-      } else {
-        this.answerCountry = randomCountry
-      }
+      // Pick random country for question
+      this.answerCountry = availableCountries[Math.floor(Math.random() * availableCountries.length)]
 
       // Put correct answer into array
       this.answerArray.push(this.answerCountry[this.apiTopicName])
 
-      // Put 3 incorrect answers into array
-      const remainingCountries = this.countryData.filter(country => country.name !== this.answerCountry.name)
+      // Ensure correct answer can only be in array once
+      let remainingCountries = this.countryData
+      .filter(country =>
+        country[this.apiTopicName] !== this.answerCountry[this.apiTopicName]
+        && country[this.apiTopicName] !== ""
+        && country.hasOwnProperty(this.apiTopicName)
+      )
 
+      // Put 3 incorrect answers into array
       for(let i=0; i < 3; i++) {
-        this.answerArray.push(remainingCountries[Math.floor(Math.random() * remainingCountries.length)][this.apiTopicName])
+        let randomCountry = remainingCountries[Math.floor(Math.random() * remainingCountries.length)]
+
+        this.answerArray.push(randomCountry[this.apiTopicName])
+
+        // Ensure no duplicates in answer array
+        remainingCountries = remainingCountries.filter(country => country[this.apiTopicName] !== randomCountry[this.apiTopicName])
       }
 
       // Shuffle array of answers
@@ -76,17 +102,20 @@ export default {
 
     },
     handleSelectAnswer(answer){
-      const result = (answer === this.answerCountry.apiTopicName)
+      // Work out if answer is correct
+      const passed = (answer === this.answerCountry[this.apiTopicName])
 
       // If correct save result for user in passed
+      if(passed) {
+        UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
+      }
 
-      // Handle previously failed question
+      // Handle previously failed question - later date
 
-      // If incorreect save result in failed
+      // If incorreect save result in failed - later date
 
-      // Move onto next question
-
-
+      // Move onto quiz answer
+      eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
     }
   }
 }

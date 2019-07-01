@@ -35,7 +35,7 @@ router.put('/:id', (req, res) => {
   collection
   .findOneAndUpdate(
     {_id: ObjectID(id)},
-    {$set: (updatedData)},
+    {$push: (updatedData)},
     {returnOriginal: false}
   )
   .then((result) => {
