@@ -45,7 +45,8 @@ export default {
      'quizCompleted': false,
      'quizChoice': false,
      'mapDisplayCountry': null,
-     'globe': null
+     'globe': null,
+     'displayMarker': null
    }
  },
  components: {
@@ -89,8 +90,9 @@ export default {
    })
    eventBus.$on('country-choice', country => {
      this.mapDisplayCountry = country;
-     console.log('hello from map overlay');
-     let marker = WE.marker(country.latlng).addTo(this.globe);
+     if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
+     this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
+     this.globe.panTo(country.latlng);
    })
  },
  methods: {
