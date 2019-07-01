@@ -18,7 +18,7 @@
         </span>
         <h3 :selectedTopic="selectedTopic">{{correctAnswer(selectedTopic)}}</h3>
         <div v-if="selectedTopic === 'Flags Quiz'" :answerCountry="answerCountry">
-          <h3 :answerCountry="answerCountry">The correct flag of {{answerCountry.name}} is</h3>
+          <h3 :answerCountry="answerCountry">The flag of {{answerCountry.name}} is</h3>
           <img :answerCountry="answerCountry" :src="answerCountry.flag" alt="Country flag" height=100>
         </div>
     </div>
