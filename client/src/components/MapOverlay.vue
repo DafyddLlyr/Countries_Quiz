@@ -15,7 +15,7 @@
 
       <div id='quiz-container' v-if='selectedTopic'>
         <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
-        <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
+        <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter':selectedTopic="selectedTopic"/>
         <quiz-complete v-if='quizCompleted' :correctAnswerCounter="correctAnswerCounter" />
       </div>
 

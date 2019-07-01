@@ -6,12 +6,28 @@
 
     <h2>{{displayAnswer()}}</h2>
 
+    <div v-if="questionPassed">
+      <span style="font-size: 150px; color: limegreen;">
+      <i class="fas fa-check-circle"></i>
+      </span>
+    </div>
+
+    <div v-if="!questionPassed">
+        <span style="font-size: 150px; color: red;">
+          <i class="fas fa-times-circle"></i>
+        </span>
+        <h3 :selectedTopic="selectedTopic">{{correctAnswer(selectedTopic)}}</h3>
+        <div v-if="selectedTopic === 'Flags Quiz'" :answerCountry="answerCountry">
+          <h3 :answerCountry="answerCountry">The correct flag of {{answerCountry.name}} is</h3>
+          <img :answerCountry="answerCountry" src="answerCountry.flag" alt="Country flag">
+        </div>
+    </div>
+
     <div id="next-button">
       <button  v-on:click="handleNextQuestion" type="button" name="button">Next Question</button>
     </div>
 
   </div>
-
 
 </template>
 
@@ -21,7 +37,7 @@ import QuizProgress from './QuizProgress.vue'
 
 export default {
   name: 'quiz-answer',
-  props: ['questionPassed', 'answerCountry', 'questionCounter'],
+  props: ['questionPassed', 'answerCountry', 'questionCounter', 'selectedTopic'],
   components: {
     'quiz-progress': QuizProgress
   },
@@ -39,6 +55,15 @@ export default {
       } else {
         eventBus.$emit('increment-counter')
       }
+    },
+    correctAnswer(topic) {
+      if (topic === "Continents Quiz") {
+        return `The country of ${this.answerCountry.name} is on the continent of ${this.answerCountry.region}`
+      } else if (topic === 'Currencies Quiz') {
+        return `The currency of ${this.answerCountry.name} is ${this.answerCountry.currencies[0].name}`
+      } else if (topic === 'Capitals Quiz') {
+        return `The capital of ${this.answerCountry.name} is ${this.answerCountry.capital}`
+    } 
     }
   }
 }
