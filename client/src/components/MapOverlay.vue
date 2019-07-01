@@ -81,7 +81,7 @@ export default {
    initializeGlobe: function() {
      let options = { zoom: 2.2, position: [47.19537,8.524404] };
      let earth = new WE.map('earth_div', options);
-     WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+     WE.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
        minZoom: 0,
        maxZoom: 5,
        attribution: 'NASA'
@@ -135,6 +135,7 @@ export default {
  bottom: 0;
  left: 20vw;
  position: absolute !important;
+ background-color: lightgrey;
 }
 
 </style>

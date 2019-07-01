@@ -31,7 +31,7 @@ export default {
 #quiz-topic {
   width: 30vw;
   height: 20vh;
-  background-color: pink;
+  background-color: rgba(255, 255, 255, 0.5);
   margin: 5vw;
 }
 
