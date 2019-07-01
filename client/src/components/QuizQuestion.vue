@@ -149,11 +149,11 @@ export default {
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: auto auto;
-  grid-gap: 3vw;
+  grid-gap: 2vw;
 }
 
 .flag-display {
-  height: 15vw;
+  height: 10vw;
   cursor: pointer;
   border: 4px solid rgba(0, 0, 0, 0.0);
 }
