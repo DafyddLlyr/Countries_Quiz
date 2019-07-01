@@ -118,7 +118,7 @@ export default {
     },
     displayQuestion(topic) {
       if (topic === "region") {
-        return `On which contient is ${this.answerCountry.name}?`
+        return `On which continent is ${this.answerCountry.name}?`
       } else if (topic === 'flag') {
         return `Which of these is the flag of ${this.answerCountry.name}?`
       } else if (topic === 'currencies') {
