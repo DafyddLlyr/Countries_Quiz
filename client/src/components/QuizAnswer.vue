@@ -19,7 +19,7 @@
         <h3 :selectedTopic="selectedTopic">{{correctAnswer(selectedTopic)}}</h3>
         <div v-if="selectedTopic === 'Flags Quiz'" :answerCountry="answerCountry">
           <h3 :answerCountry="answerCountry">The correct flag of {{answerCountry.name}} is</h3>
-          <img :answerCountry="answerCountry" src="answerCountry.flag" alt="Country flag">
+          <img :answerCountry="answerCountry" :src="answerCountry.flag" alt="Country flag" height=100>
         </div>
     </div>
 
@@ -63,7 +63,7 @@ export default {
         return `The currency of ${this.answerCountry.name} is ${this.answerCountry.currencies[0].name}`
       } else if (topic === 'Capitals Quiz') {
         return `The capital of ${this.answerCountry.name} is ${this.answerCountry.capital}`
-    } 
+    }
     }
   }
 }
