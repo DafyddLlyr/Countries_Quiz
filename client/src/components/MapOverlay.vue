@@ -22,7 +22,7 @@
     </div>
 
     <div v-if="profileSelected" id="profile">
-      <user-profile />
+      <user-profile :user='user'/>
     </div>
 
   </div>
