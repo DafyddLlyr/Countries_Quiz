@@ -6,7 +6,7 @@
     <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
     <br>
     <label for="country">Pick a country to explore:</label>
-    <select v-model="countryChoice" name="country" @change="handleCountryChoice">
+    <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
       <option value="" disabled>Please select a country:</option>
       <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
     </select>
@@ -61,6 +61,11 @@ export default {
   color: white;
   grid-area: nav-bar;
   height: 90vh;
+}
+
+#select {
+  width: 15vw;
+  font-size: inherit;
 }
 
 </style>

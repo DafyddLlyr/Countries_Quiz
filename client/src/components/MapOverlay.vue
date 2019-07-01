@@ -119,26 +119,23 @@ export default {
 
 #select-quiz {
   background: none;
-  top: 10vw;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  position: absolute;
+  width: 80vw;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
 }
 
 #topic-container {
  position: absolute;
  background-color: rgba(0, 0, 0, 0.0);
- top: 10vw;
  display: flex;
  flex-wrap: wrap;
  justify-content: center;
 }
 
 #quiz-container {
- position: absolute;
  background-color: rgba(0, 0, 0, 0.0);
- width: 80vw;
- height: 90vh;
  display: flex;
  justify-content: center;
  align-items: center;
