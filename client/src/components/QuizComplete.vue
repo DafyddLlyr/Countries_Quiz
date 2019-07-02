@@ -5,7 +5,7 @@
     <h2>Quiz Complete!</h2>
     <h3 :correctAnswerCounter="correctAnswerCounter">You got {{correctAnswerCounter}} out of 5!</h3>
     <div id="quiz-again">
-      <button v-on:click="handleQuizComplete" type="button" name="button">Quiz again!</button>
+      <button v-on:click="handleQuizComplete" type="button" name="button">Quiz again! <i class="fas fa-award"></i></button>
     </div>
 
   </div>

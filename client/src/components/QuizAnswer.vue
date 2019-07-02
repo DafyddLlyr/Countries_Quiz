@@ -24,7 +24,7 @@
     </div>
 
     <div id="next-button">
-      <button  v-on:click="handleNextQuestion" type="button" name="button">Next Question</button>
+      <button  v-on:click="handleNextQuestion" type="button" name="button">Next Question <i class="fas fa-arrow-circle-right"></i></button>
     </div>
 
   </div>
