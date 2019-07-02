@@ -3,11 +3,11 @@
     <div id="nav-bar-info">
       <h3>Hello, {{user.name}}!</h3>
       <br>
-      <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
+      <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz <i class="fas fa-question-circle"></i></button>
       <br>
-      <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
+      <button v-on:click="handleShowGlobe" type="button" name="button">Globe <i class="fas fa-globe-europe"></i></button>
       <br>
-      <button type="button" name="button" v-on:click="handleUserProfile">Profile</button>
+      <button type="button" name="button" v-on:click="handleUserProfile">Profile <i class="fas fa-user-circle"></i></button>
       <br>
       <label for="country"><h3>Pick a country to explore:</h3></label>
       <br>
@@ -43,7 +43,7 @@
       </table>
     </div>
     <br>
-    <button id="log-out" v-on:click="handleLogOut" type="button" name="button">Log out</button>
+    <button id="log-out" v-on:click="handleLogOut" type="button" name="button">Log out <i class="fas fa-sign-out-alt"></i></button>
   </div>
 
 </template>

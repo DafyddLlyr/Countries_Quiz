@@ -17,7 +17,7 @@
         <option v-for="user in users" :value="user">{{user.name}}</option>
       </select>
       <div>
-        <button v-on:click="handleSelectUser" type="button" name="button">Log On</button>
+        <button v-on:click="handleSelectUser" type="button" name="button">Log On <i class="fas fa-sign-in-alt"></i></button>
       </div>
 
       <br>
@@ -31,7 +31,7 @@
 
 
       </div>
-      <button v-on:click="handleAddUser" value="save" type="button" name="button">Register</button>
+      <button v-on:click="handleAddUser" value="save" type="button" name="button">Register <i class="fas fa-sign-in-alt"></i></button>
     </div>
   </div>
 </template>
