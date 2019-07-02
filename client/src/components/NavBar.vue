@@ -67,12 +67,14 @@ export default {
       eventBus.$emit('log-out')
     },
     handleShowTopics(){
+      this.countryChoice = null;
       eventBus.$emit('show-topics')
     },
     handleCountryChoice(){
       eventBus.$emit('country-choice', this.countryChoice)
     },
     handleShowGlobe(){
+      this.countryChoice = null;
       eventBus.$emit('globe-selected')
     },
     fetchCountryData(){
@@ -81,6 +83,7 @@ export default {
       .then( result => this.countryData = result)
     },
     handleUserProfile() {
+      this.countryChoice = null;
       eventBus.$emit('profile-selected')
     }
   }
