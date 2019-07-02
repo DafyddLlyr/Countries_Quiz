@@ -25,7 +25,8 @@ export default {
  name: 'app',
  data(){
    return {
-     'user': null
+     'user': null,
+     'adduser': []
    }
  },
  components: {
