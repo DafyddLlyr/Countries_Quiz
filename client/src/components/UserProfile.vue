@@ -56,7 +56,7 @@
 
     <br>
 
-    <div id="map-progress">
+    <div class="map-frequency">
       <h2>Progress Map</h2>
       <br>
       <h3>How close are you to exploring the entire world?</h3>
@@ -66,6 +66,19 @@
       type="GeoChart"
       :data="mapProgressData"
       :options="mapProgressOptions"
+      />
+    </div>
+
+    <div class="map-frequency">
+      <h2>Knowledge Gaps</h2>
+      <br>
+      <h3>Which countries do you need to learn some more about?</h3>
+      <br>
+      <GChart
+      :settings="{ packages: ['geochart'] , mapsApiKey: myMapsApiKey}"
+      type="GeoChart"
+      :data="mapFailData"
+      :options="mapFailOptions"
       />
     </div>
 
@@ -93,6 +106,14 @@ export default {
       myMapsApiKey: googleMapsAPIKey,
       user: null,
       mapProgressOptions: {
+        colorAxis: {colors: ['#799b3e']},
+        datalessRegionColor: 'white',
+        backgroundColor: '#93b0e1',
+        legend: 'none',
+        keepAspectRatio: true,
+        height: 600
+      },
+      mapFailOptions: {
         colorAxis: {colors: ['#c1d79b', '#94ba52', '#799b3e']},
         datalessRegionColor: 'white',
         backgroundColor: '#93b0e1',
@@ -207,7 +228,21 @@ export default {
         }
 
         result.unshift(['Country', 'Correct Answers'])
-        console.log(result);
+        return result
+      }
+    },
+    mapFailData() {
+      if (this.user) {
+        let failObject = {}
+        let uniqueFailArray = [...new Set(this.user.failedCountries)]
+        uniqueFailArray.forEach(country => failObject[country] = 0)
+        this.user.failedCountries.forEach(country => {
+          failObject[country] += 1
+        })
+        let result = uniqueFailArray.map(country => {
+          return [country, failObject[country]]
+        })
+        result.unshift(['Country', 'Incorrect Answers'])
         return result
       }
     }
@@ -257,11 +292,9 @@ export default {
   height: 10vw;
 }
 
-#map-progress {
+.map-frequency {
   margin-top: 3vw;
   width: 90%;
-
-
 }
 
 
