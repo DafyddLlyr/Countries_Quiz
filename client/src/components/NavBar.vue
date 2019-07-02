@@ -11,36 +11,37 @@
       <br>
       <label for="country"><h3>Pick a country to explore:</h3></label>
       <br>
-      <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
+
+      <select v-model="countryChoice" @change="handleCountryChoice" id="select">
         <option value="" disabled>Please select a country:</option>
         <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
       </select>
       <br>
     </div>
-      <div id="country-info" v-if="countryChoice" v-model="countryChoice">
-        <table>
-          <tr>
-            <th>{{countryChoice.name}}</th>
-            <th><img :src="countryChoice.flag" :alt="countryChoice.name" width=100></th>
-          </tr>
-          <tr>
-            <th>Continent: </th>
-            <td>{{countryChoice.region}}</td>
-          </tr>
-          <tr>
-            <th>Capital: </th>
-            <td>{{countryChoice.capital}}</td>
-          </tr>
-          <tr>
-            <th>Currency: </th>
-            <td>{{countryChoice.currencies[0].name}}</td>
-          </tr>
-          <tr>
-            <th>Population: </th>
-            <td>{{countryChoice.population.toLocaleString()}}</td>
-          </tr>
-        </table>
-      </div>
+    <div id="country-info" v-if="countryChoice" v-model="countryChoice">
+      <table>
+        <tr>
+          <th>{{countryChoice.name}}</th>
+          <th><img :src="countryChoice.flag" :alt="countryChoice.name" width=100></th>
+        </tr>
+        <tr>
+          <th>Continent: </th>
+          <td>{{countryChoice.region}}</td>
+        </tr>
+        <tr>
+          <th>Capital: </th>
+          <td>{{countryChoice.capital}}</td>
+        </tr>
+        <tr>
+          <th>Currency: </th>
+          <td>{{countryChoice.currencies[0].name}}</td>
+        </tr>
+        <tr>
+          <th>Population: </th>
+          <td>{{countryChoice.population.toLocaleString()}}</td>
+        </tr>
+      </table>
+    </div>
     <br>
     <button id="log-out" v-on:click="handleLogOut" type="button" name="button">Log out</button>
   </div>
@@ -55,7 +56,7 @@ export default {
   data(){
     return {
       'countryData': [],
-      'countryChoice': null
+      'countryChoice': ''
     }
   },
   props: ['user'],
@@ -161,7 +162,7 @@ button {
 select {
   height: 2vw;
   width: 15vw;
-  font-size: inherit;
+  font-size: 15px;
 }
 
 button:hover {
