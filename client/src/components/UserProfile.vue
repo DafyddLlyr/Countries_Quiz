@@ -58,7 +58,9 @@
 
     <div id="map-progress">
       <h2>Progress Map</h2>
-      <h4>How close are you to exploring the entire world?</h4>
+      <br>
+      <h3>How close are you to exploring the entire world?</h3>
+      <br>
       <GChart
       :settings="{ packages: ['geochart'] , mapsApiKey: myMapsApiKey}"
       type="GeoChart"
@@ -94,7 +96,9 @@ export default {
         colorAxis: {colors: ['lightgreen', 'green', 'green']},
         datalessRegionColor: 'white',
         backgroundColor: '#93b0e1',
-        legend: 'none'
+        legend: 'none',
+        keepAspectRatio: true,
+        height: 600
       },
       totalProgressOptions: {
         pieHole: 0.3,
@@ -247,6 +251,8 @@ export default {
 #map-progress {
   margin-top: 3vw;
   width: 90%;
+
+
 }
 
 
