@@ -39,7 +39,7 @@ export default {
     return {
       'countryData': [],
       'answerCountry': {},
-      'answerArray': []
+      'answerArray': [],
     }
   },
   components: {
