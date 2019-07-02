@@ -1,9 +1,11 @@
 <template lang="html">
 
+
   <div id="quiz-question">
     <quiz-progress :questionCounter="questionCounter"/>
-    <h2>{{selectedTopic}}</h2>
-    <h3>What is the {{apiTopicName}} of {{answerCountry.name}}?</h3>
+    <!-- <h2>{{selectedTopic}}</h2> -->
+    <h3 v-if="answerCountry">{{displayQuestion(apiTopicName)}}</h3>
+
     <div id="answer-boxes" >
 
       <div class="answer-container" v-for="answer in answerArray"
@@ -20,6 +22,7 @@
       {{answer}} </p>
 
     </div>
+
 </div>
 
 </template>
@@ -36,7 +39,7 @@ export default {
     return {
       'countryData': [],
       'answerCountry': {},
-      'answerArray': []
+      'answerArray': [],
     }
   },
   components: {
@@ -51,11 +54,10 @@ export default {
       else if (this.selectedTopic === "Flags Quiz") { return "flag" }
       else if (this.selectedTopic === "Continents Quiz") { return "region" }
       else if (this.selectedTopic === "Currencies Quiz") { return "currencies" }
-    }
+    },
   },
   mounted() {
     this.fetchCountryData()
-    // this.prepareQuiz()
   },
   methods: {
     fetchCountryData(){
@@ -108,6 +110,7 @@ export default {
       // If correct save result for user in passed
       if(passed) {
         UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
+        eventBus.$emit('correct-answer')
       }
 
       // Handle previously failed question - later date
@@ -116,6 +119,16 @@ export default {
 
       // Move onto quiz answer
       eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
+    },
+    displayQuestion(topic) {
+      if (topic === "region") {
+        return `On which continent is ${this.answerCountry.name}?`
+      } else if (topic === 'flag') {
+        return `Which of these is the flag of ${this.answerCountry.name}?`
+      } else if (topic === 'currencies') {
+        return `What is the currency of ${this.answerCountry.name}?`
+      }
+      return `What is the ${topic} of ${this.answerCountry.name}?`
     }
   }
 }
@@ -128,30 +141,40 @@ export default {
   width: 70vw;
   min-height: 60vh;
   padding: 2vw;
-  background-color: purple;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  font-size: 30px;
 }
 
 #answer-boxes {
+  margin-top: 45px;
   width: 70vw;
+  height: 30vh;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  grid-gap: 3vw;
+  grid-gap: 1vw;
+  align-items: space-around;
 }
 
 .flag-display {
-  height: 15vw;
+  height: 8vw;
   cursor: pointer;
   border: 4px solid rgba(0, 0, 0, 0.0);
+
 }
 
 .answer-display {
   cursor:pointer;
   border: 4px solid rgba(0, 0, 0, 0.0);
+  background: lightgrey;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .answer-display:hover, .flag-display:hover {

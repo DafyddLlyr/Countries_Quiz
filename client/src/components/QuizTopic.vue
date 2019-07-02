@@ -33,6 +33,14 @@ export default {
   height: 20vh;
   background-color: rgba(255, 255, 255, 0.5);
   margin: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  width: 10vw;
 }
 
 </style>
