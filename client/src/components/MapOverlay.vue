@@ -71,6 +71,7 @@ export default {
       this.selectedTopic = topic
     })
     eventBus.$on('show-topics', () => {
+      this.resetQuiz();
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.selectedTopic = null;
       this.quizChoice = true;
@@ -78,6 +79,7 @@ export default {
     })
     eventBus.$on('globe-selected', () => {
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
+      this.resetQuiz();
       this.quizChoice = false;
       this.profileSelected = false;
     })
@@ -117,6 +119,7 @@ export default {
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.profileSelected = true;
       this.quizChoice = false;
+      this.resetQuiz();
     })
   },
   methods: {
@@ -139,6 +142,11 @@ export default {
         earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
         requestAnimationFrame(animate);
       });
+    },
+    resetQuiz: function() {
+      this.answerSelected = false;
+      this.questionCounter = 0;
+      this.quizCompleted = false;
     }
   }
 }
