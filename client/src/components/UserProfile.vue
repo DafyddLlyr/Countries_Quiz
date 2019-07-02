@@ -88,7 +88,7 @@ export default {
       mapProgressOptions: {
         colorAxis: {colors: ['lightgreen', 'green', 'green']},
         datalessRegionColor: 'white',
-        backgroundColor: '',
+        backgroundColor: '#93b0e1',
         legend: 'none'
       },
       totalProgressOptions: {
@@ -104,7 +104,7 @@ export default {
           height: '90%',
           width: '90%'
         },
-        colors: ['green', 'blue']
+        colors: ['#9fc164', '#6b93d6']
       },
       quizProgressOptions: {
         pieHole: 0.3,
@@ -118,7 +118,7 @@ export default {
           height: '90%',
           width: '90%',
         },
-        colors: ['green', 'blue']
+        colors: ['#9fc164', '#6b93d6']
       }
     }
   },
@@ -212,7 +212,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: lightgrey;
+  background-color: #e9eff9;
 }
 
 #profile-charts {

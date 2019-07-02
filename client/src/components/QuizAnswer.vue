@@ -16,10 +16,10 @@
         <span style="font-size: 150px; color: red;">
           <i class="fas fa-times-circle"></i>
         </span>
-        <h3 :selectedTopic="selectedTopic">{{correctAnswer(selectedTopic)}}</h3>
-        <div v-if="selectedTopic === 'Flags Quiz'" :answerCountry="answerCountry">
+        <h3 :selectedTopic="selectedTopic" class="answer-text">{{correctAnswer(selectedTopic)}}</h3>
+        <div v-if="selectedTopic === 'Flags Quiz'" :answerCountry="answerCountry" class="flag-answer">
           <h3 :answerCountry="answerCountry">The flag of {{answerCountry.name}} is</h3>
-          <img :answerCountry="answerCountry" :src="answerCountry.flag" alt="Country flag" height=100>
+          <img :answerCountry="answerCountry" :src="answerCountry.flag" alt="Country flag" height=75 class="answer-flag">
         </div>
     </div>
 
@@ -80,9 +80,42 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
-  font-size: 30px;
+  font-size: 2rem;
+  border: solid 4px white;
+  border-radius: 15px;
 }
 
+button {
+  width: 20vw;
+  padding: 0.5vw;
+  border: none;
+  border-radius: 10px;
+  background-color: #6b93d6;
+  font-size: 2rem;
+  border: solid 2px #6b93d6;
+  cursor: pointer;
+  color: white;
+  font-weight: bolder;
+  margin-top: 1vw
+}
 
+button:hover {
+  border: solid 2px white;
+}
+
+.flag-answer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.answer-flag {
+    margin-left: 1.5vw;
+}
+
+.answer-text {
+  margin-bottom: 1vw;
+}
 
 </style>

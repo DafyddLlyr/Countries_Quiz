@@ -2,6 +2,7 @@
   <div id="nav-bar">
     <div id="nav-bar-info">
       <h3>Hello, {{user.name}}!</h3>
+      <br>
       <button v-on:click="handleShowTopics" type="button" name="button">Select Quiz</button>
       <br>
       <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
@@ -9,6 +10,7 @@
       <button type="button" name="button" v-on:click="handleUserProfile">Profile</button>
       <br>
       <label for="country"><h3>Pick a country to explore:</h3></label>
+      <br>
       <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
         <option value="" disabled>Please select a country:</option>
         <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
@@ -22,19 +24,19 @@
             <th><img :src="countryChoice.flag" :alt="countryChoice.name" width=100></th>
           </tr>
           <tr>
-            <td>Continent: </td>
+            <th>Continent: </th>
             <td>{{countryChoice.region}}</td>
           </tr>
           <tr>
-            <td>Capital: </td>
+            <th>Capital: </th>
             <td>{{countryChoice.capital}}</td>
           </tr>
           <tr>
-            <td>Currency: </td>
+            <th>Currency: </th>
             <td>{{countryChoice.currencies[0].name}}</td>
           </tr>
           <tr>
-            <td>Population: </td>
+            <th>Population: </th>
             <td>{{countryChoice.population.toLocaleString()}}</td>
           </tr>
         </table>
@@ -89,7 +91,8 @@ export default {
 <style lang="css" scoped>
 
 #nav-bar {
-  background: blue;
+  font-size: 1.2rem;
+  background: #6b93d6;
   color: white;
   grid-area: nav-bar;
   height: 90vh;
@@ -99,21 +102,17 @@ export default {
   align-items: center;
 }
 
-#select {
-  width: 15vw;
-  font-size: inherit;
-}
-
 #nav-bar-info {
-  height: 30vh;
+  /* height: 30vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-top: 1vw
 }
 
 #country-info {
-  height: 50vh;
+  /* height: 50vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -122,28 +121,52 @@ export default {
 
 table {
   text-align: center;
-  background: grey;
+  background: none;
+  width: 18vw;
+  border-spacing: 0.8vw;
 }
 
 th {
   text-align: center;
-  border-style: solid;
+  width: 9vw;
+  /* border-style: solid;
   border-width: thin;
-  border-color: #c0c0c0;
+  border-color: #c0c0c0; */
 }
 
 td {
   text-align: center;
-  border-style: solid;
+  width: 9vw;
+  /* border-style: solid;
   border-width: thin;
-  border-color: #c0c0c0;
+  border-color: #c0c0c0; */
 }
 
-#log-out {
-  display: flex;
-  flex-direction: column;
-  /* justify-content: space-between; */
-  align-items: center;
+button {
+  background-color: #9fc164;
+    font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  width: 15vw;
+  border: solid 2px #9fc164;
+  cursor: pointer;
+  height: 2vw;
+  color: white;
+  font-weight: bolder;
+}
+
+select {
+  height: 2vw;
+  width: 15vw;
+  font-size: inherit;
+}
+
+button:hover {
+  border: solid 2px white;
+}
+
+#log-out{
+  margin-bottom: 1vw
 }
 
 </style>

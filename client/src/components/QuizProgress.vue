@@ -19,13 +19,13 @@ export default {
 <style lang="css" scoped>
 
 #completed-progress {
-  background-color: green ;
+  background-color: limegreen ;
   height: 1vw;
   border-radius: 20px;
 }
 
 #bar-container {
-  background-color: white;
+  background-color: lightgrey;
   border-radius: 20px;
   margin: 1vw;
 }

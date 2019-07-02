@@ -147,6 +147,8 @@ export default {
   flex-direction: column;
   align-content: space-between;
   font-size: 30px;
+  border: solid 4px white;
+  border-radius: 15px;
 }
 
 #answer-boxes {

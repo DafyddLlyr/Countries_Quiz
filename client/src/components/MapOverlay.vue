@@ -183,7 +183,7 @@ export default {
   bottom: 0;
   left: 20vw;
   position: absolute !important;
-  background-color: lightgrey;
+  background-color: #e9eff9;
 }
 
 #profile {

@@ -16,8 +16,10 @@ export default {
 <style lang="css" scoped>
 
 #profile-header {
-  background: green;
+  background: #3569bf;
   grid-area: header;
+  color: white;
+  font-size: 1.8rem;
 }
 
 </style>

@@ -37,7 +37,28 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
+  justify-content: space-around;
   font-size: 30px;
+  border: solid 4px white;
+  border-radius: 15px;
 }
+
+button {
+  background-color: #9fc164;
+    font-size: 2rem;
+  border: none;
+  border-radius: 10px;
+  width: 15vw;
+  border: solid 2px #9fc164;
+  cursor: pointer;
+  height: 4vw;
+  color: white;
+  font-weight: bolder;
+}
+
+button:hover {
+  border: solid 2px white;
+}
+
 
 </style>
