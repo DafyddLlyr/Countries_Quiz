@@ -1,10 +1,13 @@
 <template lang="html">
+
   <div id='user-profile'>
-    <h2>User Profile</h2>
+    <h1>User Profile</h1>
+    <br>
 
     <div id="profile-charts">
-      <h3>Total Progress</h3>
-      <h4>Your progress across all of our quizzes</h4>
+      <h2>Total Progress</h2>
+      <br>
+      <h3>Your progress across all of our quizzes</h3>
       <GChart id="total-progress"
       type="PieChart"
       :data="totalProgress"
@@ -14,7 +17,7 @@
 
     <div id="quiz-charts">
       <div>
-        <h3>Capitals Quiz</h3>
+        <h2>Capitals Quiz</h2>
         <GChart class="quiz-process"
         type="PieChart"
         :data="capitalsProgress"
@@ -23,7 +26,7 @@
       </div>
 
       <div>
-        <h3>Flags Quiz</h3>
+        <h2>Flags Quiz</h2>
         <GChart class="quiz-process"
         type="PieChart"
         :data="flagsProgress"
@@ -32,7 +35,7 @@
       </div>
 
       <div>
-        <h3>Currencies Quiz</h3>
+        <h2>Currencies Quiz</h2>
         <GChart class="quiz-process"
         type="PieChart"
         :data="currenciesProgress"
@@ -41,7 +44,7 @@
       </div>
 
       <div>
-        <h3>Continents Quiz</h3>
+        <h2>Continents Quiz</h2>
         <GChart class="quiz-process"
         type="PieChart"
         :data="continentsProgress"
@@ -49,8 +52,10 @@
         />
       </div>
 
-
     </div>
+
+    <br>
+
     <div id="map-progress">
       <h2>Progress Map</h2>
       <h4>How close are you to exploring the entire world?</h4>
@@ -98,7 +103,7 @@ export default {
         },
         legend: {
           alignment: 'center',
-          textStyle: {fontSize: 20}
+          textStyle: {fontSize: 20, bold: true}
         },
         chartArea: {
           height: '90%',
@@ -243,5 +248,7 @@ export default {
   margin-top: 3vw;
   width: 90%;
 }
+
+
 
 </style>
