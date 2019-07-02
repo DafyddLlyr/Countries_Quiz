@@ -93,7 +93,7 @@ export default {
       myMapsApiKey: googleMapsAPIKey,
       user: null,
       mapProgressOptions: {
-        colorAxis: {colors: ['lightgreen', 'green', 'green']},
+        colorAxis: {colors: ['#c1d79b', '#94ba52', '#799b3e']},
         datalessRegionColor: 'white',
         backgroundColor: '#93b0e1',
         legend: 'none',
@@ -198,7 +198,16 @@ export default {
             result.splice(i + 1, 1)
           }
         }
+
+        for(let i=0; i < result.length - 1; i++){
+          if(result[i][0] === result[i + 1][0]) {
+            result[i][1] += result[i + 1][1];
+            result.splice(i + 1, 1)
+          }
+        }
+
         result.unshift(['Country', 'Correct Answers'])
+        console.log(result);
         return result
       }
     }
