@@ -110,7 +110,7 @@ export default {
       this.quizChoice = null;
       this.mapDisplayCountry = country;
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
-      this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
+      this.displayMarker = WE.marker([country.latlng], '../assets/pin-marker-position-red.png', 20, 100).addTo(this.globe);
       this.globe.panTo(country.latlng);
     })
     eventBus.$on('profile-selected', () => {
