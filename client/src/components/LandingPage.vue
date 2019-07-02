@@ -2,26 +2,38 @@
 
   <div id="landing-page">
     <div class="landing-page-header">
-    <h1>World Quiz</h1>
+      <h1>World Quiz</h1>
     </div>
+<div id="nav-bar"></div>
+    <div id='earth_div'></div>
 
-      <div id='earth_div'></div>
+    <div id="login">
 
-      <div id="login">
-    <select  v-model="user"  class="" name="">
-      <option value="" disabled>Please select user:</option>
-      <option v-for="user in users" :value="user">{{user.name}}</option>
-    </select>
-    <div>
-    <button v-on:click="handleSelectUser" type="button" name="button">Log On</button>
+      <h3>Welcome to the World Quiz where you can learn and play with facts on countries of the World. </h3>
+            <br>
+      <p>Already a user? Please Login Below:</p>
+      <select  v-model="user"  class="" name="">
+        <option value="" disabled>Please select user:</option>
+        <option v-for="user in users" :value="user">{{user.name}}</option>
+      </select>
+      <div>
+        <button v-on:click="handleSelectUser" type="button" name="button">Log On</button>
+      </div>
+
+      <br>
+
+      <p>New User? Please Register Below:</p>
+      <div id="register-box">
+
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" v-model="name" required/>
+
+
+      </div>
+      <button v-on:click="handleAddUser" value="save" type="button" name="button">Register</button>
+    </div>
   </div>
-
-  <h2>Add New User</h2>
-    <label for="name">Name:</label>
-    <input type="text" id="name" v-model="name" required/>
-    <button v-on:click="handleAddUser" value="save" type="button" name="button">Log On</button>
-  </div>
-</div>
 </template>
 
 <script>
@@ -50,8 +62,8 @@ export default {
   methods: {
     fetchData() {
       fetch('http://localhost:3000/api/users/')
-        .then(res => res.json())
-        .then(users => this.users = users)
+      .then(res => res.json())
+      .then(users => this.users = users)
     },
     handleSelectUser() {
       eventBus.$emit('selected-user', this.user)
@@ -65,11 +77,11 @@ export default {
         continentsQuiz: []
       }
       UserService.postUser(payload)
-        .then(() => fetch('http://localhost:3000/api/users/'))
-        .then(res => res.json())
-        .then(users => users.filter(user => user.name === this.name))
-        .then(user => this.user = user[0])
-        .then(() => this.handleSelectUser())
+      .then(() => fetch('http://localhost:3000/api/users/'))
+      .then(res => res.json())
+      .then(users => users.filter(user => user.name === this.name))
+      .then(user => this.user = user[0])
+      .then(() => this.handleSelectUser())
     },
     initializeGlobe: function() {
       let options = {
@@ -112,6 +124,11 @@ export default {
   font-size: 30px;
 }
 
+#nav-bar{
+  grid-area: nav-bar;
+  background-color: #e9eff9;
+}
+
 #earth_div {
   width: 80vw;
   height: 90vh;
@@ -127,16 +144,60 @@ export default {
 
 #login {
   z-index: 1;
-  background-color: none;
+  background-color: #e9eff9;
+  position: absolute;
+  left: 7vw;
+  top: 15vh;
+  width: 30vw;
+  height: 70vh;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
+
+input {
+  font-size: 20px;
+  margin-left: 1vw;
+}
+
+select {
+  width: 20vw;
+  font-size: 20px;
+}
+
+#register-box {
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 #landing-page {
- display: grid;
- grid-template-rows: 10vh;
- grid-template-columns: 20vw auto;
- grid-template-areas:
-   'header header'
-   'nav-bar map-overlay'
+  display: grid;
+  grid-template-rows: 10vh;
+  grid-template-columns: 20vw auto;
+  grid-template-areas:
+  'header header'
+  'nav-bar map-overlay'
 }
 
+button {
+  background-color: #9fc164;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  width: 15vw;
+  border: solid 2px #9fc164;
+  cursor: pointer;
+  height: 2vw;
+  color: white;
+  font-weight: bolder;
+}
+
+h3 {
+  font-size: 30px;
+}
 </style>
