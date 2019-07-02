@@ -200,4 +200,8 @@ button {
 h3 {
   font-size: 30px;
 }
+
+button:hover {
+  border: solid 2px white;
+}
 </style>
