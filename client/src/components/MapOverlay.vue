@@ -15,10 +15,14 @@
 
       <div id='quiz-container' v-if='selectedTopic'>
         <quiz-question v-if='(!answerSelected && questionCounter < 5)' :selectedTopic='selectedTopic' :user='user' :questionCounter="questionCounter"/>
-        <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter'/>
-        <quiz-complete v-if='quizCompleted' />
+        <quiz-answer v-if='(answerSelected && questionCounter < 5)' :questionPassed='questionPassed' :answerCountry='answerCountry' :questionCounter='questionCounter':selectedTopic="selectedTopic"/>
+        <quiz-complete v-if='quizCompleted' :correctAnswerCounter="correctAnswerCounter" />
       </div>
 
+    </div>
+
+    <div v-if="profileSelected" id="profile">
+      <user-profile :userID='user'/>
     </div>
 
   </div>
@@ -31,6 +35,7 @@ import QuizTopic from './QuizTopic.vue'
 import QuizQuestion from './QuizQuestion.vue'
 import QuizAnswer from './QuizAnswer.vue'
 import QuizComplete from './QuizComplete.vue'
+import UserProfile from './UserProfile.vue'
 
 export default {
   name: 'map-overlay',
@@ -44,17 +49,20 @@ export default {
       'questionCounter': 0,
       'quizCompleted': false,
       'quizChoice': false,
+      'correctAnswerCounter': 0,
       'mapDisplayCountry': null,
       'globe': null,
       'displayMarker': null,
-      'globeSpin': false // Change me to turn animation on
+      'globeSpin': false, // Change me to turn animation on
+      'profileSelected': false
     }
   },
   components: {
     'quiz-topic': QuizTopic,
     'quiz-question': QuizQuestion,
     'quiz-answer': QuizAnswer,
-    'quiz-complete': QuizComplete
+    'quiz-complete': QuizComplete,
+    'user-profile': UserProfile
   },
   mounted(){
     this.initializeGlobe()
@@ -65,9 +73,11 @@ export default {
     eventBus.$on('show-topics', () => {
       this.selectedTopic = null;
       this.quizChoice = true;
+      this.profileSelected = false;
     })
     eventBus.$on('globe-selected', () => {
       this.quizChoice = false;
+      this.profileSelected = false;
     })
     eventBus.$on('answer-selected', result => {
       this.answerSelected = true;
@@ -82,6 +92,9 @@ export default {
       this.questionCounter += 1;
       this.quizCompleted = true;
     })
+    eventBus.$on('correct-answer', () => {
+      this.correctAnswerCounter +=1;
+    })
     eventBus.$on('quiz-reset', () => {
       this.selectedTopic = null;
       this.answerSelected = false;
@@ -89,12 +102,17 @@ export default {
       this.answerCountry = null;
       this.questionCounter = 0;
       this.quizCompleted = false;
+      this.correctAnswerCounter = 0;
     })
     eventBus.$on('country-choice', country => {
       this.mapDisplayCountry = country;
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
       this.globe.panTo(country.latlng);
+    })
+    eventBus.$on('profile-selected', () => {
+      this.profileSelected = true;
+      this.quizChoice = false;
     })
   },
   methods: {
@@ -103,8 +121,8 @@ export default {
       this.globe = new WE.map('earth_div', options);
       WE.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
         minZoom: 0,
-        maxZoom: 5,
-        attribution: 'NASA'
+        maxZoom: 10,
+        attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC'
       }).addTo(this.globe);
     },
     checkGlobeSpin: function() { // Not yet called
@@ -166,6 +184,16 @@ export default {
   left: 20vw;
   position: absolute !important;
   background-color: lightgrey;
+}
+
+#profile {
+  position: absolute;
+  width: 80vw;
+  height: 90vh;
+  top: 10vh;
+  right: 0;
+  bottom: 0;
+  left: 20vw;
 }
 
 </style>

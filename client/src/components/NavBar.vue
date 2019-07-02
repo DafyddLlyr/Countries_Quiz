@@ -6,6 +6,8 @@
       <br>
       <button v-on:click="handleShowGlobe" type="button" name="button">Globe</button>
       <br>
+      <button type="button" name="button" v-on:click="handleUserProfile">Profile</button>
+      <br>
       <label for="country"><h3>Pick a country to explore:</h3></label>
       <select v-model="countryChoice" name="country" @change="handleCountryChoice" id="select">
         <option value="" disabled>Please select a country:</option>
@@ -76,6 +78,9 @@ export default {
       .then( res => res.json())
       .then( result => this.countryData = result)
     },
+    handleUserProfile() {
+      eventBus.$emit('profile-selected')
+    }
   }
 }
 

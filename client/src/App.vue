@@ -54,7 +54,6 @@ export default {
  -webkit-font-smoothing: antialiased;
  -moz-osx-font-smoothing: grayscale;
  text-align: center;
- color: #2c3e50;
 }
 
 #profile-container {
@@ -64,6 +63,6 @@ export default {
  grid-template-areas:
    'header header'
    'nav-bar map-overlay'
-
 }
+
 </style>
