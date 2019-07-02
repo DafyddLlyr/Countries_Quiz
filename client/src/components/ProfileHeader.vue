@@ -1,7 +1,7 @@
 <template lang="html">
 
   <div id="profile-header">
-    <h1>Countries Quiz</h1>
+    <h1>World Quiz</h1>
   </div>
 
 </template>
