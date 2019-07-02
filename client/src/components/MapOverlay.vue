@@ -71,11 +71,13 @@ export default {
       this.selectedTopic = topic
     })
     eventBus.$on('show-topics', () => {
+      if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.selectedTopic = null;
       this.quizChoice = true;
       this.profileSelected = false;
     })
     eventBus.$on('globe-selected', () => {
+      if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.quizChoice = false;
       this.profileSelected = false;
     })
@@ -105,12 +107,14 @@ export default {
       this.correctAnswerCounter = 0;
     })
     eventBus.$on('country-choice', country => {
+      this.quizChoice = null;
       this.mapDisplayCountry = country;
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
       this.globe.panTo(country.latlng);
     })
     eventBus.$on('profile-selected', () => {
+      if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.profileSelected = true;
       this.quizChoice = false;
     })
