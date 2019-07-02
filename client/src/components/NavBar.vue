@@ -91,7 +91,7 @@ export default {
 <style lang="css" scoped>
 
 #nav-bar {
-  font-size: 1.2em;
+  font-size: 20px;
   background: #6b93d6;
   color: white;
   grid-area: nav-bar;
@@ -144,7 +144,7 @@ td {
 
 button {
   background-color: #9fc164;
-    font-size: 1.2em;
+  font-size: 20px;
   border: none;
   border-radius: 10px;
   width: 15vw;
