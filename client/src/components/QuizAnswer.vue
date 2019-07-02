@@ -80,7 +80,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-content: center;
-  font-size: 2rem;
+  font-size: 2em;
   border: solid 4px white;
   border-radius: 15px;
 }
@@ -91,7 +91,7 @@ button {
   border: none;
   border-radius: 10px;
   background-color: #6b93d6;
-  font-size: 2rem;
+  font-size: 2em;
   border: solid 2px #6b93d6;
   cursor: pointer;
   color: white;

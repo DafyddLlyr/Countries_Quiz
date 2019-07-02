@@ -45,7 +45,7 @@ export default {
 
 button {
   background-color: #9fc164;
-    font-size: 2rem;
+    font-size: 2em;
   border: none;
   border-radius: 10px;
   width: 15vw;

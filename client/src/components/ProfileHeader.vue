@@ -19,7 +19,7 @@ export default {
   background: #3569bf;
   grid-area: header;
   color: white;
-  font-size: 1.8rem;
+  font-size: 1.8em;
 }
 
 </style>
