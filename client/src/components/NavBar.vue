@@ -63,6 +63,10 @@ export default {
   props: ['user'],
   mounted(){
     this.fetchCountryData()
+    eventBus.$on('failed-country', failedCountry => {
+      this.countryChoice = this.countryData.filter(country => country.name === failedCountry)[0]
+      this.handleCountryChoice()
+    })
   },
   methods: {
     handleLogOut(){

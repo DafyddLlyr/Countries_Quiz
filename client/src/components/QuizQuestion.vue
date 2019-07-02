@@ -133,7 +133,7 @@ export default {
       return `What is the ${topic} of ${this.answerCountry.name}?`
     },
     displayCurrencyAnswer(answer) {
-      if (answer[0].name === '[d]' || answer[0].name === '[e]') {
+      if (answer[0].name === '[D]' || answer[0].name === '[e]') {
         return "United States dollar"
       } else {
         return answer[0].name

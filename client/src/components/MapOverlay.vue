@@ -110,6 +110,7 @@ export default {
     })
     eventBus.$on('country-choice', country => {
       this.quizChoice = null;
+      this.profileSelected = false;
       this.mapDisplayCountry = country;
       if(this.displayMarker) { this.displayMarker.removeFrom(this.globe) };
       this.displayMarker = WE.marker(country.latlng).addTo(this.globe);
