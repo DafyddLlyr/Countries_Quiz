@@ -3,7 +3,6 @@
 
   <div id="quiz-question">
     <quiz-progress :questionCounter="questionCounter"/>
-    <!-- <h2>{{selectedTopic}}</h2> -->
     <h3 v-if="answerCountry">{{displayQuestion(apiTopicName)}}</h3>
 
     <div id="answer-boxes" >
@@ -15,7 +14,7 @@
 
       <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName === 'currencies'"
       v-on:click="handleSelectAnswer(answer)">
-      {{answer[0].name}} </p>
+      {{ displayCurrencyAnswer(answer) }}</p>
 
       <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag' && apiTopicName !== 'currencies'"
       v-on:click="handleSelectAnswer(answer)">
@@ -129,6 +128,13 @@ export default {
         return `What is the currency of ${this.answerCountry.name}?`
       }
       return `What is the ${topic} of ${this.answerCountry.name}?`
+    },
+    displayCurrencyAnswer(answer) {
+      if (answer[0].name === '[d]' || answer[0].name === '[e]') {
+        return "United States dollar"
+      } else {
+        return answer[0].name
+      }
     }
   }
 }

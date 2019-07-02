@@ -14,7 +14,8 @@
 
       <select v-model="countryChoice" @change="handleCountryChoice" id="select">
         <option value="" disabled>Please select a country:</option>
-        <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country">{{country.name}}</option>
+        <option v-for="(country, index) in countryData" :country="country" :key="index" :value="country"> {{country.name}}
+        </option>
       </select>
       <br>
     </div>
@@ -107,7 +108,6 @@ export default {
 }
 
 #nav-bar-info {
-  /* height: 30vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -116,7 +116,6 @@ export default {
 }
 
 #country-info {
-  /* height: 50vh; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -133,17 +132,11 @@ table {
 th {
   text-align: center;
   width: 9vw;
-  /* border-style: solid;
-  border-width: thin;
-  border-color: #c0c0c0; */
 }
 
 td {
   text-align: center;
   width: 9vw;
-  /* border-style: solid;
-  border-width: thin;
-  border-color: #c0c0c0; */
 }
 
 button {
