@@ -3,6 +3,7 @@ To install -
 ```
 cd server
 npm i
+mongod
 npm run seeds
 npm run server:dev
 ```
