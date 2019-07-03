@@ -5,7 +5,7 @@
     <br>
 
     <div id="profile-charts">
-      <h2>Total Progress</h2>
+      <h2>Total Progress <i class="fas fa-award"></i></h2>
       <br>
       <h3>Your progress across all of our quizzes</h3>
       <GChart id="total-progress"
