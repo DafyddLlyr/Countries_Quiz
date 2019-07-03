@@ -111,13 +111,11 @@ export default {
         UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
         eventBus.$emit('correct-answer')
       }
+
       // If incorreect save result in failed
       else {
         UserService.updateUser(this.user._id, {"failedCountries":  this.answerCountry.name})
       }
-
-      // Handle previously failed question - later date
-
 
       // Move onto quiz answer
       eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})

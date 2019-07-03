@@ -82,7 +82,7 @@
       :options="mapFailOptions"
       />
 <br>
-      <h3 v-on:click="visitRandomFailedCountry" id="country-suggestion"> Why not learn about {{ randomFailedCountry }} today?</h3>
+      <h3 v-if="user.failedCountries.length !== 0" v-on:click="visitRandomFailedCountry" id="country-suggestion"> Why not learn about {{ randomFailedCountry }} today? <i class="fas fa-arrow-circle-right"></i></h3>
       <br>
     </div>
 
@@ -111,15 +111,15 @@ export default {
     return {
       myMapsApiKey: googleMapsAPIKey,
       user: null,
-      mapProgressOptions: {
-        colorAxis: {colors: ['#799b3e']},
+      mapFailOptions: {
+        colorAxis: {colors: ['#c1649f']},
         datalessRegionColor: 'white',
         backgroundColor: '#93b0e1',
         legend: 'none',
         keepAspectRatio: true,
         height: 500
       },
-      mapFailOptions: {
+      mapProgressOptions: {
         colorAxis: {colors: ['#c1d79b', '#94ba52', '#799b3e']},
         datalessRegionColor: 'white',
         backgroundColor: '#93b0e1',
