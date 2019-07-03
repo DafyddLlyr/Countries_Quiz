@@ -270,17 +270,10 @@ export default {
       eventBus.$emit('failed-country', this.randomFailedCountry)
     },
     deleteUser(){
-      // check user wants to delete the account.
-      //message pops up
-      //if yes
-      //delete user
-    UserService.deleteUser(this.user._id)
-   //return to landing page
-   eventBus.$emit('log-out')
-
-
-      //if no
-      //nothing happens
+      // Delete user
+      UserService.deleteUser(this.user._id)
+      // Return to landing page
+      eventBus.$emit('log-out')
     }
   }
 }
