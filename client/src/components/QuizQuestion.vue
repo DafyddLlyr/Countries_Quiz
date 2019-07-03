@@ -3,7 +3,6 @@
 
   <div id="quiz-question">
     <quiz-progress :questionCounter="questionCounter"/>
-    <!-- <h2>{{selectedTopic}}</h2> -->
     <h3 v-if="answerCountry">{{displayQuestion(apiTopicName)}}</h3>
 
     <div id="answer-boxes" >
@@ -15,7 +14,7 @@
 
       <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName === 'currencies'"
       v-on:click="handleSelectAnswer(answer)">
-      {{answer[0].name}} </p>
+      {{ displayCurrencyAnswer(answer) }}</p>
 
       <p class="answer-display" v-for="answer in answerArray"  v-if="apiTopicName !== 'flag' && apiTopicName !== 'currencies'"
       v-on:click="handleSelectAnswer(answer)">
@@ -112,10 +111,13 @@ export default {
         UserService.updateUser(this.user._id, {[this.dbTopicName]:  this.answerCountry.name})
         eventBus.$emit('correct-answer')
       }
+      // If incorreect save result in failed
+      else {
+        UserService.updateUser(this.user._id, {"failedCountries":  this.answerCountry.name})
+      }
 
       // Handle previously failed question - later date
 
-      // If incorreect save result in failed - later date
 
       // Move onto quiz answer
       eventBus.$emit('answer-selected', {country: this.answerCountry, userAnswer: passed})
@@ -129,6 +131,13 @@ export default {
         return `What is the currency of ${this.answerCountry.name}?`
       }
       return `What is the ${topic} of ${this.answerCountry.name}?`
+    },
+    displayCurrencyAnswer(answer) {
+      if (answer[0].name === '[D]' || answer[0].name === '[e]') {
+        return "United States dollar"
+      } else {
+        return answer[0].name
+      }
     }
   }
 }
