@@ -86,7 +86,7 @@
       <br>
     </div>
 
-<button v-on:click="deleteUser" type="button">Delete Account</button>
+<button v-on:click="deleteUser" id="delete-button" type="button">Delete Account <i class="fas fa-user-slash"></i></button>
 
 
   </div>
@@ -346,6 +346,27 @@ export default {
 }
 
 #country-suggestion:hover {
+  border: solid 2px white;
+}
+
+#delete-button {
+
+    background-color: red;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 15vw;
+    border: solid 2px red;
+    cursor: pointer;
+    height: 2vw;
+    color: white;
+    font-weight: bolder;
+    margin-bottom: 3vw;
+
+
+}
+
+#delete-button:hover {
   border: solid 2px white;
 }
 

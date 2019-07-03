@@ -58,6 +58,7 @@ export default {
     this.fetchData()
     this.initializeGlobe()
     this.checkGlobeSpin()
+    // eventBus.$on("log-out", () => this.fetchData())
   },
   methods: {
     fetchData() {
