@@ -12,8 +12,9 @@
       <h3>Welcome to the World Quiz where you can learn and play with facts on countries of the World. </h3>
             <br>
       <p>Already a user? Please Login Below:</p>
-      <select  v-model="user"  class="" name="">
+      <select v-model="user">
         <option value="" disabled>Please select user:</option>
+        {{fetchData()}}
         <option v-for="user in users" :value="user">{{user.name}}</option>
       </select>
       <div>
@@ -58,7 +59,6 @@ export default {
     this.fetchData()
     this.initializeGlobe()
     this.checkGlobeSpin()
-    // eventBus.$on("log-out", () => this.fetchData())
   },
   methods: {
     fetchData() {

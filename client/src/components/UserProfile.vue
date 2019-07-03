@@ -350,20 +350,16 @@ export default {
 }
 
 #delete-button {
-
-    background-color: red;
-    font-size: 20px;
-    border: none;
-    border-radius: 10px;
-    width: 15vw;
-    border: solid 2px red;
-    cursor: pointer;
-    height: 2vw;
-    color: white;
-    font-weight: bolder;
-    margin-bottom: 3vw;
-
-
+  background-color: red;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  border: solid 2px red;
+  cursor: pointer;
+  height: 2vw;
+  color: white;
+  font-weight: bolder;
+  margin-bottom: 3vw;
 }
 
 #delete-button:hover {
