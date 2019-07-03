@@ -74,7 +74,8 @@ export default {
         capitalsQuiz: [],
         flagsQuiz: [],
         currenciesQuiz: [],
-        continentsQuiz: []
+        continentsQuiz: [],
+        failedCountries: []
       }
       UserService.postUser(payload)
       .then(() => fetch('http://localhost:3000/api/users/'))
