@@ -22,5 +22,12 @@ postUser(payload){
      headers: { 'Content-Type': 'application/json'}
    })
    .then(res => res.json())
+ },
+
+ deleteUser(id){
+   return fetch(baseURL + id, {
+     method: 'DELETE'
+   })
  }
+
 }
