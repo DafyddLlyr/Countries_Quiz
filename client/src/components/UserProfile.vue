@@ -86,6 +86,7 @@
       <br>
     </div>
 
+<button v-on:click="deleteUser" type="button">Delete Account</button>
 
 
   </div>
@@ -97,6 +98,7 @@
 import {eventBus} from '../main.js'
 import { GChart } from 'vue-google-charts'
 import { googleMapsAPIKey } from '../../private/keys.js'
+import UserService from  '../services/UserService.js'
 
 export default {
   name: 'user-profile',
@@ -266,6 +268,19 @@ export default {
     },
     visitRandomFailedCountry() {
       eventBus.$emit('failed-country', this.randomFailedCountry)
+    },
+    deleteUser(){
+      // check user wants to delete the account.
+      //message pops up
+      //if yes
+      //delete user
+    UserService.deleteUser(this.user._id)
+   //return to landing page
+   eventBus.$emit('log-out')
+
+
+      //if no
+      //nothing happens
     }
   }
 }
