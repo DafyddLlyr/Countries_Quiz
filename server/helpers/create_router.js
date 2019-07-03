@@ -61,6 +61,18 @@ router.post('/', (req, res) => {
      })
   })
 
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  collection
+  .deleteOne({_id: ObjectID(id)})
+  .then(result => {res.json(result)})
+  .catch((err) => {
+    console.err(err);
+    res.status(500);
+    res.json({status: 500, error: err});
+  })
+})
+
 
   return router;
 }
