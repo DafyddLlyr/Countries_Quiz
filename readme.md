@@ -1,7 +1,7 @@
 # World Quiz
-## Travel the globe in this interactive and educational quiz game, where learners can improve their knowledge of flags, capitals, currencies and continents.
+#### Travel the globe in this interactive and educational quiz game, where learners can improve their knowledge of flags, capitals, currencies and continents.
 
-Group project for @codeclan, build over 7 days with @laurasheach and @sarab78 in Week 8 & 9.
+Group project for CodeClan, build over 7 days with [@laurasheach](https://github.com/laurasheach) and [@sarab78](https://github.com/sarab78) in Week 8 & 9.
 
 A full stack web app with a Vue.js / JavaScript frontend, with an Express.js and MongoDB backend.
 
