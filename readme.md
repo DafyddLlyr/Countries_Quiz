@@ -5,7 +5,7 @@ Group project for @codeclan, build over 7 days with @laurasheach and @sarab78 in
 
 A full stack web app with a Vue.js / JavaScript frontend, with an Express.js and MongoDB backend.
 
-![Landing Page](Screenshots/landing_page.png)
+![Landing Page](screenshots/landing_page.png)
 
 ## Brief
 
