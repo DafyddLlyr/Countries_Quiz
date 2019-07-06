@@ -349,7 +349,7 @@ export default {
   border-radius: 10px;
   border: solid 2px red;
   cursor: pointer;
-  height: 2vw;
+  padding: 0.3vw;
   color: white;
   font-weight: bolder;
   margin-bottom: 3vw;
