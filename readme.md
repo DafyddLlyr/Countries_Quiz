@@ -24,7 +24,7 @@ A full stack web app with a Vue.js / JavaScript frontend, with an Express.js and
 
 * The ability to create a new account, and to to delete your account
 
-* All questions, answers, and quiz topics are build dynamically from the API and are not hardcoded. This means it would be simple to add or remove categories of quiz based on the available API data
+* All questions, answers, and quiz topics are built dynamically from the API and are not hardcoded. This means it would be simple to add or remove categories of quiz based on the available API data
 
 ## Features I'd like to implement in future -
 
